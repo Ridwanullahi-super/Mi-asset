@@ -16,7 +16,8 @@ const Fixed_assets = require("./Models/fixedAssets");
 const autoReminder = require("./mail/autoReminder");
 const schedule = require("node-schedule");
 const notifyEmail = require("./mail/notifyMessageToRenter");
-const cron = require("node-cron")
+const cron = require("node-cron");
+const { automaticReminder } = require("./controller/admin/remiderController");
 const port = 4200|| process.env.PORT;
 // look up folders and path
 server.use(express.static(path.join(__dirname, "public")));
@@ -62,40 +63,26 @@ server.use ("/admin", authenticateAdmin, adminRoutes)
 
 // automatic mail send
 
-async function BeforeToday(due_time,vrentime) {
-  var renters= await Renters.fetchTime()
-  const renter= renters.map(q=>q.due_time)  
-  let dueTime = new Date(renter.due_time).getTime()-(1000*60*60)
-  let rentDay = new Date(renter.rent_time)
-  let date = (new Date(Number(new Date(renter.due_time)))).getTime()
-  // console.log(date);
-   var newDate = date-86400000
-  let dayOFweek = new Date(newDate).getDay()
-  let month = new Date(newDate).getMonth() + 1;
-  let dayOfMonth = new Date(newDate).getDate()
-  let hour = new Date(newDate).getHours()
-  let minute = new Date(newDate).getMinutes()
-  let seconds = new Date(newDate).getSeconds()
-  let year = new Date(newDate).getFullYear()
-  let ExpectedDay = (rentDay.getTime()-dueTime.getTime())
-  return ExpectedDay;
-}
+// async function BeforeToday(due_time,vrentime) {
+//   var renters= await Renters.fetchTime()
+//   const renter= renters.map(q=>q.due_time)  
+//   let dueTime = new Date(renter.due_time).getTime()-(1000*60*60)
+//   let rentDay = new Date(renter.rent_time)
+//   let date = (new Date(Number(new Date(renter.due_time)))).getTime()
+//   // console.log(date);
+//    var newDate = date-86400000
+//   let dayOFweek = new Date(newDate).getDay()
+//   let month = new Date(newDate).getMonth() + 1;
+//   let dayOfMonth = new Date(newDate).getDate()
+//   let hour = new Date(newDate).getHours()
+//   let minute = new Date(newDate).getMinutes()
+//   let seconds = new Date(newDate).getSeconds()
+//   let year = new Date(newDate).getFullYear()
+//   let ExpectedDay = (rentDay.getTime()-dueTime.getTime())
+//   return ExpectedDay;
+// }
 
-(async(req, res)=>{
-  // let id = req?.session?.user?.id 
-  var renters= await Renters.fetchTime()
-  for(let i = 0; i<renters.length; i++){
-    const renter= renters.map(q=>q.due_time)  
-    
-    const Dates = new Date()
-    // const sendDate = await Dates(BeforeToday.year, BeforeToday.month, BeforeToday.dayOfMonth, 12, 0, 0);
-    // const job = await schedule.scheduleJob(sendDate, notifyEmail(renter.email, renter.fullname, renter.asset, renter.due_time))
-    
-    const DueTime = renters.map(q=>q.due_time)
-    console.log(DueTime);
-  }
-  console.log(renters);
-})()
+
 
 // console.log(renter);
 // renter.asset = await Fixed_assets.findId(renter.id) 
@@ -128,3 +115,34 @@ server.listen(port, (err)=>{
     console.log(err)
   }
 });
+(async()=>{
+  // let id = req?.session?.user?.id 
+  var renters= await Renters.fetchRenterAssetID()
+    const due_dates= renters.map(q=>q.due_time)  
+    const first_names= renters.map(q=>q.first_name)  
+    const surnames= renters.map(q=>q.surname)  
+    const emails= renters.map(q=>q.email)  
+    const asset_names= renters.map(q=>q.fs_name)  
+    
+    for (let i = 0; i < due_dates.length; i++) {
+      const due_date = due_dates[i];
+      const fullname = surnames[i] + " " + first_names[i];
+      const email = emails[i];
+      const asset_name = asset_names[i];
+      // console.log(due_date,fullname,email, asset_name);
+      
+    var scheduleDate = new Date(due_date)
+      scheduleDate.setDate(scheduleDate.getDate()-1)
+      console.log(due_date ,scheduleDate.getMonth()+1);
+
+      cron.schedule(`27 18  ${scheduleDate.getDate()}  ${scheduleDate.getMonth()+1} ${scheduleDate.getDay()}`,()=>{
+       autoReminder(email, fullname, asset_name,due_date)
+      })
+    }
+    
+    // const Dates = new Date()
+    // const sendDate = await Dates(BeforeToday.year, BeforeToday.month, BeforeToday.dayOfMonth, 12, 0, 0);
+    // const job = await schedule.scheduleJob(sendDate, notifyEmail(renter.email, renter.fullname, renter.asset, renter.due_time))
+    
+    // const DueTime = renters.map(q=>q.due_time)
+})()

@@ -102,32 +102,13 @@ async function autoReminder(email, name, asset, deadline) {
   </body>
   `,
   };
-  cron.schedule(`* * * * * `,()=>{
-    async function BeforeToday(due_time,vrentime) {
-      var renters= await Renters.fetchTime()
-      const renter= renters.map(q=>q.due_time)  
-      let dueTime = new Date(renter.due_time).getTime()-(1000*60*60)
-      let rentDay = new Date(renter.rent_time)
-      let date = (new Date(Number(new Date(renter.due_time)))).getTime()
-      // console.log(date);
-       var newDate = date-86400000
-      let dayOFweek = new Date(newDate).getDay()
-      let month = new Date(newDate).getMonth() + 1;
-      let dayOfMonth = new Date(newDate).getDate()
-      let hour = new Date(newDate).getHours()
-      let minute = new Date(newDate).getMinutes()
-      let seconds = new Date(newDate).getSeconds()
-      let year = new Date(newDate).getFullYear()
-      let ExpectedDay = (rentDay.getTime()-dueTime.getTime())
-      return ExpectedDay;
+ 
+  transporter.sendMail(mailOptions, (err, info) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("Email sent to: " + email);
     }
-    transporter.sendMail(mailOptions, (err, info) => {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log("Email sent to: " + email);
-      }
-    });
-  })
+  });
 }
 module.exports = autoReminder;

@@ -18,9 +18,9 @@ class Renters extends model {
     return fullname;
    } 
    
-  static async fetchTime(){
+  static async fetchRenterAssetID(){
       let result = [];
-      let sql = `SELECT due_time FROM renters`
+      let sql = `SELECT first_name, surname, email, due_time, fs.name  as fs_name from renters rt LEFT JOIN fixed_assets fs ON rt.fixed_asset_id =  fs.id;`
       let [rows] = await conn.execute(sql)
       for(const row of rows){
          result.push(new this(row))
