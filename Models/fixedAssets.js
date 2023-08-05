@@ -3,9 +3,9 @@ const conn = require("./connection");
 
 
 class Fixed_assets extends Model {
-    static async userID(id){
+    static async adminID(id){
         let result = [];
-        let sql = `SELECT * FROM fixed_assets WHERE user_id = ? `
+        let sql = `SELECT * FROM fixed_assets WHERE admin_id = ? `
         let [rows] = await conn.query(sql,id);
         for(const row of rows){
             result.push(new this(row))
@@ -13,9 +13,9 @@ class Fixed_assets extends Model {
         return result;
        
     }
-    static async assetId(id,Id){
+    static async assetId(id){
         let result = []
-        let sql = `SELECT id, name FROM fixed_assets WHERE user_id =? `
+        let sql = `SELECT id, name FROM fixed_assets WHERE admin_id =? `
         let [rows] = await conn.execute(sql,[id])
          for(const row of rows){
             result.push(new this(row))

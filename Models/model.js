@@ -78,13 +78,13 @@ class Model {
       i++;
     }
     sql += ` WHERE id = ${this.id}`;
-    console.log(sql, values);
     let [result] = await conn.execute(sql, values);
+    // console.log(sql, values);
     return result.affectedRows > 0;
   }
 
  async delete() {
-    let sql = `DELETE FROM ${this.tableName} where id = ${this.id}`;
+    let sql = `DELETE FROM ${this.constructor.tableName} where id = ${this.id}`;
 
     console.log(sql);
     let [result] = await conn.execute(sql);

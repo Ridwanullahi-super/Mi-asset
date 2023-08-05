@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <link rel="icon" type="image/x-icon" href="/img/logo.jpg">
+
+  <title>Mi-Asset Dashboard</title>
+
+  <!-- libraries -->
+  <!-- <link href="/css/all.min.css" rel="stylesheet" type="text/css" /> -->
+  <link rel="stylesheet" href="/css/all.min.css">
+  <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+  <link href="/css/main-style.css" rel="stylesheet" type="text/css" />
+  <!-- Custom fonts for this template-->
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+  <!-- google font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DynaPuff&display=swap" rel="stylesheet" />
+
+  <!-- Custom styles for this template-->
+  <link href="/css/sb-admin-2.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/spinner.css">
+
+</head>
+
+<body id="page-top">
+
+  <div class="preloader is-active">
+    <div class="preloader__wrap">
+      <div class="spinner-grow text-danger" style="background-color: purple;"></div>
+    </div>
+  </div>
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-purple sidebar sidebar-dark accordion" id="accordionSidebar">
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin/index">
+        <div class="sidebar-brand-icon rotate-n-15">
+          <i class="fas fa-house fa-2x"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">
+          <b style="font-family: Georgia; color: gold">Mi</b>-<i>Assets</i>
+        </div>
+      </a>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-1 bg-warning" />
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item  side-nav">
+        <a class="nav-link" href="/admin/home">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Dashboard</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider" />
+
+      <!-- Heading -->
+      <div class="sidebar-heading">Add</div>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item side-nav">
+        <a class="nav-link collapsed" href="/add-renter" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-user"></i>
+          <span>Renters</span>
+        </a>
+
+      </li>
+
+      <!-- Nav Item - fixed assets Collapse Menu -->
+      <li class="nav-item side-nav">
+        <a class="nav-link collapsed" href="/admin/add-asset" aria-expanded="true" aria-controls="collapseUtilities">
+          <i class="fas fa-fw fa-wrench"></i>
+          <span>Fixed assets</span>
+        </a>
+
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider" />
+
+      <!-- Heading -->
+      <div class="sidebar-heading">information</div>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+      <li class="nav-item side-nav">
+        <a class="nav-link collapsed" href="/admin/renters" aria-expanded="true" aria-controls="collapsePages">
+          <i class="fas fa-fw fa-users"></i>
+          <span>Rentals Details</span>
+        </a>
+
+      </li>
+
+      <!-- Nav Item - Charts -->
+      <li class="nav-item side-nav">
+        <a class="nav-link" href="/assets">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Assets Details</span></a>
+      </li>
+
+      <!-- Nav Item - Tables -->
+      <li class="nav-item side-nav">
+        <a class="nav-link" href="/admin/depreciate">
+          <i class="fas fa-fw fa-egg"></i>
+          <span>Depreciation</span></a>
+      </li>
+      <li class="nav-item active side-nav">
+        <a class="nav-link " href="/admin/reminder">
+          <i class="fas fa-fw fa-mail-bulk"></i>
+          <span>Reminders</span></a>
+      </li>
+      <li class="nav-item  side-nav">
+        <a class="nav-link" href="/admin/profit">
+          <i class="fas fa-fw fa-kiwi-bird"></i>
+          <span>Profit</span></a>
+      </li>
+      <li class="nav-item side-nav">
+        <a class="nav-link" href="/admin/profile">
+          <i class="fas fa-fw fa-circle-user"></i>
+          <span>Profile</span></a>
+      </li>
+      <li class="nav-item side-nav">
+        <a class="nav-link" href="" data-bs-toggle="modal" data-bs-target="#my_Modal">
+          <i class="fas fa-fw fa-sign-out"></i>
+          <span>Sign Out</span></a>
+      </li>
+      <!-- The Modal -->
+      <div class="modal" id="my_Modal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Did you want to sign Out?</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+              Are you sure you want to long out?
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <a type="button" href class="btn btn-primary">Yes</a>
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block" />
+
+
+
+      <!-- Sidebar Message -->
+      <div class="sidebar-card d-none d-lg-flex">
+        <img class="sidebar-card-illustration mb-2" src="/img/profile.jpg" alt="..." />
+        <p class="text-center mb-2">
+          <strong title="my profile"> <a href="/admin/profile">Mr.Admin</a></strong> welcome to Mi assets,
+
+        </p>
+      </div>
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+      <!-- Main Content -->
+      <div id="content">
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+          <!-- Sidebar Toggle (Topbar) -->
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+
+
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+            <li class="nav-item dropdown no-arrow d-sm-none">
+
+              <!-- Dropdown - Messages -->
+              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                <form class="form-inline mr-auto w-100 navbar-search">
+                  <div class="input-group">
+                  </div>
+                </form>
+              </div>
+            </li>
+
+            <!-- Nav Item - Alerts -->
+            <li class="nav-item dropdown no-arrow mx-0 ">
+              <a class="nav-link dropdown-toggle" href="#" id="AlertsDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-bell fa-fw"></i>
+                <!-- Counter - Alerts -->
+                <span class="badge badge-danger badge-counter">3+</span>
+              </a>
+              <!-- Dropdown - Alerts -->
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="AlertsDropdown">
+                <h6 class="dropdown-header mx-0" style="background-color: purple; ">
+                  Alerts Center
+                </h6>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-purple">
+                      <i class="fas fa-file-alt text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">December 12, 2019</div>
+                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                  </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-success">
+                      <i class="fas fa-donate text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">December 7, 2019</div>
+                    $290.29 has been deposited into your account!
+                  </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="mr-3">
+                    <div class="icon-circle bg-warning">
+                      <i class="fas fa-exclamation-triangle text-white"></i>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="small text-gray-500">December 2, 2019</div>
+                    Spending Alert: We've noticed unusually high spending for your account.
+                  </div>
+                </a>
+                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+              </div>
+            </li>
+            <!-- Nav Item - Messages -->
+            <li class="nav-item dropdown no-arrow mx-1">
+              <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-envelope fa-fw"></i>
+                <!-- Counter - Messages -->
+                <span class="badge badge-danger badge-counter">7</span>
+              </a>
+              <!-- Dropdown - Messages -->
+              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+                <h6 class="dropdown-header" style="background-color: purple;">
+                  Message Center
+                </h6>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="dropdown-list-image mr-3">
+                    <img class="rounded-circle" src="img/profile.jpg" alt="...">
+                    <div class="status-indicator bg-success"></div>
+                  </div>
+                  <div class="font-weight-bold">
+                    <div class="text-truncate">Hi there! I am wondering if you can help me with a
+                      problem I've been having.</div>
+                    <div class="small text-gray-500">Emily Fowler · 58m</div>
+                  </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="dropdown-list-image mr-3">
+                    <img class="rounded-circle" src="img/profile.jpg" alt="...">
+                    <div class="status-indicator"></div>
+                  </div>
+                  <div>
+                    <div class="text-truncate">I have the photos that you ordered last month, how
+                      would you like them sent to you?</div>
+                    <div class="small text-gray-500">Jae Chun · 1d</div>
+                  </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="dropdown-list-image mr-3">
+                    <img class="rounded-circle" src="img/profile.jpg" alt="...">
+                    <div class="status-indicator bg-warning"></div>
+                  </div>
+                  <div>
+                    <div class="text-truncate">Last month's report looks great, I am very happy with
+                      the progress so far, keep up the good work!</div>
+                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
+                  </div>
+                </a>
+                <a class="dropdown-item d-flex align-items-center" href="#">
+                  <div class="dropdown-list-image mr-3">
+                    <img class="rounded-circle" src="img/profile.jpg" alt="...">
+                    <div class="status-indicator bg-success"></div>
+                  </div>
+                  <div>
+                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone
+                      told me that people say this to all dogs, even if they aren't good...</div>
+                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
+                  </div>
+                </a>
+                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+              </div>
+            </li>
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Mr. Admin</span>
+                <img class="img-profile rounded-circle" src="/img/profile.jpg" />
+              </a>
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="/profile">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Profile
+                </a>
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Settings
+                </a>
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Activity Log
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+        <section class="section profile">
+          <div class="row">
+
+
+            <div class="col-xl-12 ">
+              <div class="card">
+                <div class="card-body pt-3">
+                  <!-- Bordered Tabs -->
+                  <ul class="nav nav-tabs nav-tabs-bordered ">
+
+                    <li class="nav-item">
+                      <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#reminder">Construct Reminder</button>
+                    </li>
+
+                    <li class="nav-item">
+                      <button class="nav-link" data-bs-toggle="tab" data-bs-target="#history">Histroy</button>
+                    </li>
+
+
+                  </ul>
+                  <div class="tab-content pt-2">
+
+                    <div class="tab-pane fade show active profile-overview" id="reminder">
+
+                      <div class="card-body profile-card pt-2  flex-column align-items-center">
+
+                        <!-- reminder -->
+                        <form action="" class="mt-2" method="post">
+                          <div class="row">
+                            <div class="col-md-4 col-sm-4 col-lg-4">
+                              <!-- full name -->
+                              <div class="label ">Full Name</div>
+                              <select class="form-select form-select-lg" name="fullname" id="">
+                                <% for( let renter of renters ) { %>
+                                  <option value="<%= renter.fullName() %>" ><%=renter.fullName() %></option>
+                                  
+                                  <% } %>
+                                </select>
+                              </div>
+
+                              <!-- Email -->
+                            <div class="col-md-4 col-sm-4 col-lg-4 mb-1">
+                                <label for="" class="form-label">Email</label>
+
+                                <select class="form-select form-select-lg" name="email" id="">
+                              <% for( let renter of renters ) { %>
+                                  <option value="<%= renter.email %>" ><%=renter.email %></option>
+                                  
+                                  <% } %>
+                                </select>
+
+                            </div>
+
+                            <div class="col-md-4 col-sm-4 col-lg-4">
+                              <!-- department -->
+                              <div class="">
+                                <label for="" class="form-label">Title</label>
+                                <input type="text" class="form-control" name="title" id="" aria-describedby="helpId" placeholder="Title of the messaage">
+                              </div>
+
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="mb-3">
+                              <label for="" class="form-label">Messages</label>
+                              <textarea class="form-control" name="message" id="" rows="3"></textarea>
+                            </div>
+                          </div>
+                          <div class="text-center">
+
+                            <button type="submit" class="btn btn-primary text-center">Send Mail</button>
+                          </div>
+                        </form>
+
+</div>
+</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="tab-pane fade profile-edit pt-3" id="history">
+
+                    <div class="tab">
+
+                      <p>
+                        <a class="btn w-25" data-bs-toggle="collapse" href="#contentId" aria-expanded="false" aria-controls="contentId">
+                          adewale adetunji <span class="float-right">12:00</span>
+                        </a>
+                      </p>
+                      <div class="collapse" id="contentId">
+                        you received a reminder message on 20th january 2023
+                      </div>
+                    </div>
+
+                    <div class="tab">
+
+                      <p>
+                        <a class="btn w-25" data-bs-toggle="collapse" href="#content" aria-expanded="false" aria-controls="contentId">
+                          adewale adetunji <span class="float-right">14:00</span>
+                        </a>
+                      </p>
+                      <div class="collapse" id="content">
+                        you received a reminder message on 20th january 2023
+                      </div>
+                    </div>
+
+                    <div class="tab">
+
+                      <p>
+                        <a class="btn w-25" data-bs-toggle="collapse" href="#cont" aria-expanded="false" aria-controls="contentId">
+                          adewale adetunji <span class="float-right">24:00</span>
+                        </a>
+                      </p>
+                      <div class="collapse " id="cont">
+                        you received a reminder message on 20th january 2023
+                      </div>
+                    </div>
+
+
+
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+        </section>
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal">
+          <div class="modal-dialog modal-dialog-sm">
+            <div class="modal-content">
+
+              <!-- Modal Header -->
+              <div class="modal-header">
+                <h4 class="modal-title"></h4>
+                <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+              </div>
+
+              <!-- Modal body -->
+              <div class="modal-body">
+                <h6>Are you sure you want to log out?</h6>
+              </div>
+
+              <!-- Modal footer -->
+              <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal"> <a href="/src/index-login.html">yes</a> </button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"> <a href="#">NO</a> </button>
+              </div>
+
+            </div>
+          </div>
+          <!-- upload modal -->
+          </main>
+          <!-- End #main -->
+
+
+          <!-- jquery link -->
+          <script src="/js/jquery.min.js"></script>
+          <script>
+            $(window).on('load', function() {
+              setTimeout(function() {
+                $(".preloader").fadeOut('slow');
+              }, 600);
+            });
+          </script>
+           <%- include("../patials/footer.ejs") %>
+

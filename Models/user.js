@@ -26,19 +26,19 @@ class User extends Model{
       }
       
 
-      static async changePassword(suppliedPassword) {
-        const sql = `SELECT password FROM admins WHERE id=? `;
-        const [result] = await conn.execute(sql, [id]);
-        if (result.length > 0) {
-          let admin_Password = new Admin(result[0]);
-          const match = await bcrypt.compare(admin_Password, suppliedPassword);
-          if (match) {
-            return admin_Password;
-          } else {
-            return false;
-          }
-        }
-      }
+      // static async changePassword(suppliedPassword) {
+      //   const sql = `SELECT password FROM admins WHERE id=? `;
+      //   const [result] = await conn.execute(sql, [id]);
+      //   if (result.length > 0) {
+      //     let admin_Password = new Admin(result[0]);
+      //     const match = await bcrypt.compare(admin_Password, suppliedPassword);
+      //     if (match) {
+      //       return admin_Password;
+      //     } else {
+      //       return false;
+      //     }
+      //   }
+      // }
 
 
     name(){
@@ -46,12 +46,13 @@ class User extends Model{
         return fullName;
       }
 
-      static async changePassword(suppliedPassword) {
+ static async checkPass(id, suppliedPassword) {
         const sql = `SELECT password FROM users WHERE id=? `;
         const [result] = await conn.execute(sql, [id]);
         if (result.length > 0) {
           let user_Password = new User(result[0]);
           const match = await bcrypt.compare(user_Password, suppliedPassword);
+          console.log(match,"password correct");
           if (match) {
             return user_Password;
           } else {
