@@ -135,7 +135,7 @@ server.listen(port, (err)=>{
       scheduleDate.setDate(scheduleDate.getDate()-1)
       console.log(due_date ,scheduleDate.getMonth()+1);
 
-      cron.schedule(`27 18  ${scheduleDate.getDate()}  ${scheduleDate.getMonth()+1} ${scheduleDate.getDay()}`,()=>{
+      cron.schedule(`${scheduleDate.getMinutes()} ${scheduleDate.getHours()} ${scheduleDate.getDate()} ${scheduleDate.getMonth()+1} ${scheduleDate.getDay()}`,()=>{
        autoReminder(email, fullname, asset_name,due_date)
       })
     }
