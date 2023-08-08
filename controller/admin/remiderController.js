@@ -21,31 +21,31 @@ const sendEmail = (req, res)=>{
     res.redirect("back")    
 }
 
-const automaticReminder = async (req, res)=>{
-    let id = req?.session?.admin?.id
-    var renter= await Renters.adminID(id)
-    let dueTime = new Date(renter.due_time).getTime()-(1000*60*60)
-    //  let rentDay = new Date(renter.rent_time)
-    console.log(renter);
-    let date = (new Date(Number(new Date(renter.due_time)))).getTime()
-    let newDate = date-86400000
-    let dayOFweek = new Date(newDate).getDay()
-    let month = new Date(newDate).getMonth() + 1;
-    let dayOfMonth = new Date(newDate).getDate()
-    let hour = new Date(newDate).getHours()
-    let minute = new Date(newDate).getMinutes()
-    let seconds = new Date(newDate).getSeconds()
-    let year = new Date(newDate).getFullYear()
-    //  let ExpectedDay = (rentDay.getTime()-dueTime.getTime())
+// const automaticReminder = async (req, res)=>{
+//     let id = req?.session?.admin?.id
+//     var renter= await Renters.adminID(id)
+//     let dueTime = new Date(renter.due_time).getTime()-(1000*60*60)
+//     //  let rentDay = new Date(renter.rent_time)
+//     console.log(renter);
+//     let date = (new Date(Number(new Date(renter.due_time)))).getTime()
+//     let newDate = date-86400000
+//     let dayOFweek = new Date(newDate).getDay()
+//     let month = new Date(newDate).getMonth() + 1;
+//     let dayOfMonth = new Date(newDate).getDate()
+//     let hour = new Date(newDate).getHours()
+//     let minute = new Date(newDate).getMinutes()
+//     let seconds = new Date(newDate).getSeconds()
+//     let year = new Date(newDate).getFullYear()
+//     //  let ExpectedDay = (rentDay.getTime()-dueTime.getTime())
 
-    const sendDate = new Date(year, month, dayOfMonth, 12, 0, 0);
-    console.log(sendDate);
-    for(let renter of  renter){
-        renter.asset = await Fixed_assets.findId(renter.fixed_asset_id) 
-}
-    const job = schedule.scheduleJob(sendDate, autoReminder(renter.email, renter.fullname, renter.asset, renter.due_time))   
+//     const sendDate = new Date(year, month, dayOfMonth, 12, 0, 0);
+//     console.log(sendDate);
+//     for(let renter of  renter){
+//         renter.asset = await Fixed_assets.findId(renter.fixed_asset_id) 
+// }
+//     const job = schedule.scheduleJob(sendDate, autoReminder(renter.email, renter.fullname, renter.asset, renter.due_time))   
  
-}
+// }
 
 
-module.exports = {getRemind, sendEmail,automaticReminder}
+module.exports = {getRemind, sendEmail}

@@ -17,7 +17,7 @@ const autoReminder = require("./mail/autoReminder");
 const schedule = require("node-schedule");
 const notifyEmail = require("./mail/notifyMessageToRenter");
 const cron = require("node-cron");
-const { automaticReminder } = require("./controller/admin/remiderController");
+
 const port = 4200|| process.env.PORT;
 // look up folders and path
 server.use(express.static(path.join(__dirname, "public")));
@@ -84,14 +84,7 @@ server.use ("/admin", authenticateAdmin, adminRoutes)
 
 
 
-// console.log(renter);
-// renter.asset = await Fixed_assets.findId(renter.id) 
 
-// let reminder = async (req, res)=>{
-//   let id = req?.session?.user?.id 
-//   var renters= await Renters.fetchTime()
-  
-// }
 
 
 
@@ -116,9 +109,8 @@ server.listen(port, (err)=>{
   }
 });
 (async()=>{
-  // let id = req?.session?.user?.id 
   var renters= await Renters.fetchRenterAssetID()
-    const due_dates= renters.map(q=>q.due_time)  
+  const due_dates= renters.map(q=>q.due_time)
     const first_names= renters.map(q=>q.first_name)  
     const surnames= renters.map(q=>q.surname)  
     const emails= renters.map(q=>q.email)  
@@ -133,16 +125,11 @@ server.listen(port, (err)=>{
       
     var scheduleDate = new Date(due_date)
       scheduleDate.setDate(scheduleDate.getDate()-1)
-      console.log(due_date ,scheduleDate.getMonth()+1);
+      // console.log(due_date, scheduleDate.getMonth()+1);
 
       cron.schedule(`${scheduleDate.getMinutes()} ${scheduleDate.getHours()} ${scheduleDate.getDate()} ${scheduleDate.getMonth()+1} ${scheduleDate.getDay()}`,()=>{
        autoReminder(email, fullname, asset_name,due_date)
       })
     }
     
-    // const Dates = new Date()
-    // const sendDate = await Dates(BeforeToday.year, BeforeToday.month, BeforeToday.dayOfMonth, 12, 0, 0);
-    // const job = await schedule.scheduleJob(sendDate, notifyEmail(renter.email, renter.fullname, renter.asset, renter.due_time))
-    
-    // const DueTime = renters.map(q=>q.due_time)
 })()

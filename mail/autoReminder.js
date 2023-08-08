@@ -6,6 +6,7 @@ async function autoReminder(email, name, asset, deadline) {
   var name = name;
   var asset = asset;
   var deadline = deadline;
+  
 
   let transporter = nodemailer.createTransport({
     service: "gmail",
@@ -64,7 +65,7 @@ async function autoReminder(email, name, asset, deadline) {
                                           <span
                                               style="display:inline-block; vertical-align:middle; margin:29px 0 26px; border-bottom:1px solid #cecece; width:100px;"></span>
                                           <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
-                                            This is to reminds you about the ${asset} you borrowed, you are expected to return it tomorrow. As the form filled says ${deadline} is your deadline to return the asset. 
+                                            This is to reminds you about the ${asset} you borrowed, you are expected to return it tomorrow. As the form filled says ${new Date(deadline).toDateString()} is your deadline to return the asset. 
                                           </p>
                                           <p><b>
                                             Thanks for bearing with Us
