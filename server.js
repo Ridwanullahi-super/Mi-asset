@@ -18,7 +18,7 @@ const schedule = require("node-schedule");
 const notifyEmail = require("./mail/notifyMessageToRenter");
 const cron = require("node-cron");
 
-const port = 4200|| process.env.PORT;
+const port = process.env.PORT || 4200 ;
 // look up folders and path
 server.use(express.static(path.join(__dirname, "public")));
 server.use(express.static(path.join(__dirname,'uploads')));
