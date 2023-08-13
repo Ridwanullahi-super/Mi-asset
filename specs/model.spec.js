@@ -34,6 +34,7 @@ describe("test the save function", async()=>{
         mymodel.findId(arg1);
         await sinon.assert.calledOnce(spy)
         await expect(spy.calledOnce).to.be.true;
+        return console.log("sucess");
     })  
    it("test tostrings function in the model", async()=>{   
     const spy = sinon.spy(mymodel,"tostrings")     

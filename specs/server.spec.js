@@ -1,8 +1,34 @@
-// const Mail = require("nodemailer/lib/mailer");
-// const mail = require("./mail/autoReminder");
+// const chai = require('chai');
+// const expect = chai.expect;
+// const request = require('supertest');
+// const app = require('../server');
 
+// describe('GET /', () => {
+//   it('should return "Hello, World!"', (done) => {
+//     request(app)
+//       .get('/')
+//       .expect(200)
+//       .end((err, res) => {
+//         expect(res.text).to.equal('Hello, World!');
+//         done();
+//       });
+//   });
+// });
+// test/server.test.js
+// const chai = require('chai');
+// const expect = chai.expect;
+// const request = require('supertest');
+// const app = require('../server');
 
-
-// decribe("test the entire server",async()=>{
-//     instanceof(
-// })
+// describe('GET /me', async() => {
+//   it('should return "Hello, World!"', async(done) => {
+//     request(app)
+//       .get('/me')
+//       .expect(200)
+//       .end( async(err, res) => {
+//         expect(res.text).to.equal('Hello, World!');
+//         done();
+//         res;
+//       });
+//   });
+// });

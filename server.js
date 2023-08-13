@@ -17,6 +17,7 @@ const autoReminder = require("./mail/autoReminder");
 const schedule = require("node-schedule");
 const notifyEmail = require("./mail/notifyMessageToRenter");
 const cron = require("node-cron");
+// const obj = require("../specs/server.specs.js")
 
 const port = process.env.PORT || 4200 ;
 // look up folders and path
@@ -29,7 +30,7 @@ server.use(express.json())
 server.set("view engine", "ejs");
 server.set("views", "pages");
 
-
+// server.use(obj)
 // session handler
 server.use(
     session({
@@ -133,3 +134,6 @@ server.listen(port, (err)=>{
     }
     
 })()
+server.get('/me', async(req, res) => {
+  await res.send('Hello, World!');
+});

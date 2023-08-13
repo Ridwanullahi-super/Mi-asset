@@ -24,9 +24,12 @@ const chaiasPromise = require("chai-as-promised")
         this.timeout(0)
         myObj.testPromise().then(function(result){
             expect(result).to.be.equal(5)
-            // expect(false).to.be.true;
+            expect(false).to.be.true;
             done();
         })
-   //  return expect(myObj).testPromise().to.eventually.equal(6 )
+    return expect(myObj).testPromise().to.eventually.equal(6 )
     })
  })
+
+
+ module.export = {myObj}

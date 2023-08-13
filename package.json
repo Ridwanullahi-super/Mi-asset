@@ -29,7 +29,6 @@
     "test": "mocha './specs/**/*.spec.js'",
     "coverage": "nyc --reporter=lcov --reporter=text npm run test"
   },
-  
   "author": "Super",
   "license": "ISC",
   "keywords": [
@@ -46,6 +45,7 @@
     "nodemon": "^3.0.1",
     "nyc": "^15.1.0",
     "sinon": "^15.2.0",
+    "supertest": "^6.3.3",
     "xmlhttprequest": "^1.8.0"
   },
   "repository": {
