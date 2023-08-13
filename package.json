@@ -26,7 +26,12 @@
     "start:dev": "nodemon",
     "build": "npm install",
     "start": "node app.js",
-    "test": "node app.js"
+    "test": "mocha './specs/**/*.spec.js'",
+    "coverage": "nyc --reporter=lcov --reporter=text npm run test"
+  },
+  "nyc":{
+    "include":"src",
+    "exclude":"specs"
   },
   "author": "Super",
   "license": "ISC",
@@ -37,7 +42,14 @@
   ],
   "description": "fixed asset management system ",
   "devDependencies": {
-    "nodemon": "^3.0.1"
+    "chai": "^4.3.7",
+    "chai-as-promised": "^7.1.1",
+    "mocha": "^10.2.0",
+    "nock": "^13.3.2",
+    "nodemon": "^3.0.1",
+    "nyc": "^15.1.0",
+    "sinon": "^15.2.0",
+    "xmlhttprequest": "^1.8.0"
   },
   "repository": {
     "type": "git",
