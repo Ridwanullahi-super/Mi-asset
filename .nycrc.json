@@ -1,9 +1,17 @@
 {
     "include":"src",
     "exclude":"specs",
-    "check-coverage":true,
-    "branches":80,
+   "all": true,
+    "report-dir": "./reports",
+    "reporters": ["text", "text-summary", "html"],
+    "watermarks": {
+      "lines": [80, 95],
+      "functions": [80, 95],
+      "branches": [80, 95],
+      "statements": [80, 95]
+    },
     "lines": 80,
+    "branches":80,
     "functions": 80,
     "statements": 80,
     "reporter": "/reports"

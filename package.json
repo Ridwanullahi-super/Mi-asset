@@ -26,7 +26,7 @@
     "start:dev": "nodemon",
     "build": "npm install",
     "start": "node app.js",
-    "test": "mocha './specs/**/*.spec.js' --watch",
+    "test": "mocha './specs/**/*.spec.js'",
     "coverage": "nyc --reporter=lcov --reporter=text npm run test"
   },
   
