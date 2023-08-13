@@ -1,5 +1,5 @@
 const  conn  = require("./connection");
-const Model = require("./model");
+const Model = require( "./model");
 const bcrypt = require("bcrypt");
 // const saltRound = 4;
 

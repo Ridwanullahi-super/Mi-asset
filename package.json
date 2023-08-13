@@ -26,13 +26,10 @@
     "start:dev": "nodemon",
     "build": "npm install",
     "start": "node app.js",
-    "test": "mocha './specs/**/*.spec.js'",
+    "test": "mocha './specs/**/*.spec.js' --watch",
     "coverage": "nyc --reporter=lcov --reporter=text npm run test"
   },
-  "nyc":{
-    "include":"src",
-    "exclude":"specs"
-  },
+  
   "author": "Super",
   "license": "ISC",
   "keywords": [
