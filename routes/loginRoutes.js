@@ -9,7 +9,9 @@ const log = Router()
 log.get("/user",Userlogin)
 log.post("/user", userGetLogin)
 
-
+log.get("/", async(req, res)=>{
+ res.render("index.ejs")
+})
 // create account handleler
 log.get('/create-account', creatAccountUser)
 log.post('/create-account', newUser)
