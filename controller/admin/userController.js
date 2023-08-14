@@ -33,13 +33,16 @@ let otherp = "00000"
  } 
  const newadmin = async (req, res)=>{
     try {
-        let admin = new admin(req.body)
+        let admin = new Admin(req.body)
         await admin.save()
-        console.log(admin);
-        res.redirect("/admin")
+      //   console.log(admin);
+      req.flash("success","you have sucessfully add one Admin")
+        res.redirect("back")
+      //   notifyAdmin(a)
     } catch (error) {
         console.log(error.status);
-        res.render("error")
+        req.flash("error","unable to add Admin")
+        res.ridirect("back")
     }
  }
  module.exports = {login, creatAccount, newadmin, getLogin }

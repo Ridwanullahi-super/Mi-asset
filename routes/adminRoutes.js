@@ -14,8 +14,8 @@ const admin = Router ();
 
 
 // create account handleler
-admin.get('/create-account', creatAccount)
-admin.post('/create-account', newadmin)
+admin.get('/add-admin', creatAccount)
+admin.post('/add-admin', newadmin)
 
 
 
