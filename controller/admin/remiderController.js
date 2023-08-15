@@ -17,8 +17,8 @@ const getRemind = (async(req, res)=>{
 const sendEmail = (req, res)=>{
     let {fullname, email, title, message} = req.body;
     notifyEmail(email,title,fullname,message)
-    // console.log(fullname, email, title, message);
-    res.redirect("back")    
+    res.redirect("back")
+    req.flash("success", "Message sent successfully")
 }
 
 // const automaticReminder = async (req, res)=>{
