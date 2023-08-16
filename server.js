@@ -9,11 +9,11 @@ const loginRoutes = require("./routes/loginRoutes")
 const fileUpload = require("express-fileupload")
 const adminRoutes = require("./routes/adminRoutes");
 const userRoutes = require("./routes/usersRoutes");
-const authenticateUser = require("./middleware/authenticate");
-const authenticateAdmin = require("./middleware/authenticateAdmin");
 const Renters = require("./Models/renters");
 const Fixed_assets = require("./Models/fixedAssets");
 const autoReminder = require("./mail/autoReminder");
+const authenticateUser = require("./middleware/authenticate");
+const authenticateAdmin = require("./middleware/authenticateAdmin");
 const schedule = require("node-schedule");
 const notifyEmail = require("./mail/notifyMessageToRenter");
 const cron = require("node-cron");
@@ -32,10 +32,9 @@ server.set("views", "pages");
 
 // server.use(obj)
 // session handler
-server.use(
-    session({
+server.use(session({
       secret: "keyboard cat",
-      resave: false,
+      resave:false,
       saveUninitialized: true,
       cookie: { secure: false },
     })
@@ -106,7 +105,7 @@ server.listen(port, (err)=>{
   console.log(`server is running on port http://localhost:${port}`);
     
   } catch (err) {
-    console.log(err)
+    console.log(err.message)
   }
 });
 (async()=>{
@@ -134,6 +133,3 @@ server.listen(port, (err)=>{
     }
     
 })()
-server.get('/me', async(req, res) => {
-  await res.send('Hello, World!');
-});
