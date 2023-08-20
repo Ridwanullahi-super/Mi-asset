@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt")
 const User = require("../../Models/user")
-let has = "$2b$10$CPGHFFC4pSB2C6lprtxKhem9Wl0.4nu3ra2s7I55VBcDzwgXv2FfC"
-let otherp = "00000"
+// let has = "$2b$10$CPGHFFC4pSB2C6lprtxKhem9Wl0.4nu3ra2s7I55VBcDzwgXv2FfC"
+// let otherp = "00000"
 
  const  Userlogin = (req, res)=>{
     res.render('user/login')
@@ -11,8 +11,8 @@ let otherp = "00000"
    try {
       let {email, password} = req.body;
       let user = await User.login(email, password)
-      let pass = await bcrypt.compare(otherp,has)
-      console.log(pass);
+      // let pass = await bcrypt.compare(otherp,has)
+      // console.log(pass);
       if(user){
          req.session.user = user;
          console.log(req.path);

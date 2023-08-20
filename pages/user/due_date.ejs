@@ -43,7 +43,7 @@
     <!-- Sidebar -->
     <ul class="navbar-nav bg-purple sidebar sidebar-dark accordion" id="accordionSidebar">
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/index">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/user/index">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-house fa-2x"></i>
         </div>
@@ -57,7 +57,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item side-nav">
-        <a class="nav-link" href="/home">
+        <a class="nav-link" href="/user/home">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -70,7 +70,7 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item side-nav">
-        <a class="nav-link collapsed" href="/assets"  aria-expanded="true"
+        <a class="nav-link collapsed" href="/user/assets"  aria-expanded="true"
           aria-controls="collapsePages">
           <i class="fas fa-fw fa-tools"></i>
           <span>Avaialable Assets</span>
@@ -78,7 +78,7 @@
         
       </li>
       <li class="nav-item side-nav">
-        <a class="nav-link collapsed" href="/rent-asset"  aria-expanded="true"
+        <a class="nav-link collapsed" href="/user/rent-asset"  aria-expanded="true"
           aria-controls="collapsePages">
           <i class="fas fa-fw fa-house"></i>
           <span>Rent Assets</span>
@@ -86,7 +86,7 @@
         
       </li>
       <li class="nav-item side-nav">
-        <a class="nav-link collapsed" href="/assets"  aria-expanded="true"
+        <a class="nav-link collapsed" href="/user/assets"  aria-expanded="true"
           aria-controls="collapsePages">
           <i class="fas fa-fw fa-bank"></i>
           <span>Payment </span>
@@ -96,24 +96,24 @@
 
       <!-- Nav Item - Charts -->
       <li class="nav-item side-nav">
-        <a class="nav-link" href="/rent-details">
+        <a class="nav-link" href="/user/rent-details">
           <i class="fas fa-fw fa-folder"></i>
           <span>Rents Details</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
       <li class="nav-item active side-nav">
-        <a class="nav-link" href="/due-date">
+        <a class="nav-link" href="/user/due-date">
           <i class="fas fa-fw fa-clock"></i>
           <span>Due Time</span></a>
       </li>
       <li class="nav-item side-nav">
-        <a class="nav-link" href="/reminder">
+        <a class="nav-link" href="/user/reminder">
           <i class="fas fa-fw fa-desktop"></i>
           <span>Outstanding</span></a>
       </li>
       <li class="nav-item side-nav">
-        <a class="nav-link" href="/profit">
+        <a class="nav-link" href="/user/profit">
           <i class="fas fa-fw fa-mail-bulk"></i>
           <span>Complaint</span></a>
       </li>
@@ -179,32 +179,13 @@
               <i class="fa fa-bars"></i>
             </button>
           </form>
-
+        
           <!-- Topbar Navbar -->
+          <button class="btn btn-danger" style="padding:-100px important!">Outsatnding</button>
           <ul class="navbar-nav ml-auto">
             <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-            <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-search fa-fw"></i>
-              </a>
-              <!-- Dropdown - Messages -->
-              <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                aria-labelledby="searchDropdown">
-                <form class="form-inline mr-auto w-100 navbar-search">
-                  <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                      aria-label="Search" aria-describedby="basic-addon2" />
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" type="button">
-                        <i class="fas fa-search fa-sm"></i>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </li>
-
+            
+        
             <!-- Nav Item - Alerts -->
             <li class="nav-item dropdown no-arrow mx-0 ">
               <a class="nav-link dropdown-toggle" href="#" id="AlertsDropdown" role="button" data-bs-toggle="dropdown"
@@ -316,7 +297,7 @@
                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
               </div>
             </li>
-
+    
             <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - User Information -->
@@ -389,8 +370,8 @@
                   <tbody>
                  <td>Tailor machine</td>
                  <td>23, july 2023</td>
-                 <a href=""> <td class="fas fa-sign-in" title="pay for rent"></td></a>
-                  </tbody>
+                <td title="pay for rent"><a href="" class="fas fa-sign-in" ></a></td>
+                </tbody>
           
                 </table>
               </div>

@@ -26,7 +26,7 @@
     />
 
     <!-- Custom styles for this template -->
-    <link href="/css/sb-admin-2.css" rel="stylesheet" />
+    <link href="/css/sb-user-2.css" rel="stylesheet" />
 
     <!-- Custom styles for this page -->
     <link
@@ -55,7 +55,7 @@
         <!-- Sidebar - Brand -->
         <a
           class="sidebar-brand d-flex align-items-center justify-content-center"
-          href="/admin/index"
+          href="/user/index"
         >
           <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-house fa-2x"></i>
@@ -66,7 +66,7 @@
         </a>
 
         <li class="nav-item side-nav">
-          <a class="nav-link collapsed" href="/admin/home">
+          <a class="nav-link collapsed" href="/user/home">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a
           >
@@ -82,7 +82,7 @@
         <li class="nav-item  side-nav">
           <a
             class="nav-link collapased"
-            href="/admin/add-renter"
+            href="/user/add-renter"
             aria-expanded="true"
             aria-controls="collapseTwo"
           >
@@ -95,7 +95,7 @@
         <li class="nav-item side-nav">
           <a
             class="nav-link collapsed"
-            href="/admin/add-asset"
+            href="/user/add-asset"
             aria-expanded="true"
             aria-controls="collapseUtilities"
           >
@@ -114,7 +114,7 @@
         <li class="nav-item side-nav">
           <a
             class="nav-link "
-            href="/admin/renters"
+            href="/user/renters"
             aria-expanded="true"
             aria-controls="collapsePages"
           >
@@ -125,7 +125,7 @@
 
         <!-- Nav Item - Charts -->
         <li class="nav-item side-nav">
-          <a class="nav-link" href="/admin/assets">
+          <a class="nav-link" href="/user/assets">
             <i class="fas fa-fw fa-folder"></i>
             <span>Assets Details</span></a
           >
@@ -133,25 +133,25 @@
 
         <!-- Nav Item - Tables -->
         <li class="nav-item side-nav">
-          <a class="nav-link" href="/admin/depreciate">
+          <a class="nav-link" href="/user/depreciate">
             <i class="fas fa-fw fa-egg"></i>
             <span>Depreciation</span></a
           >
         </li>
         <li class="nav-item side-nav">
-          <a class="nav-link" href="/admin/reminder">
+          <a class="nav-link" href="/user/reminder">
             <i class="fas fa-fw fa-mail-bulk"></i>
             <span>Reminders</span></a
           >
         </li>
         <li class="nav-item active side-nav">
-          <a class="nav-link" href="/admin/profit">
+          <a class="nav-link" href="/user/profit">
             <i class="fas fa-fw fa-kiwi-bird"></i>
             <span>Profit</span></a
           >
         </li>
         <li class="nav-item side-nav">
-          <a class="nav-link" href="/admin/profile">
+          <a class="nav-link" href="/user/profile">
             <i class="fas fa-fw fa-circle-user"></i> 
             <span>Profile</span></a
           >
@@ -200,7 +200,7 @@
             alt="..."
           />
           <p class="text-center mb-2">
-            <strong title="my profile"> <a href="/admin/profile">Mr.admin</a></strong> welcome to Mi assets,
+            <strong title="my profile"> <a href="/user/profile">Mr.user</a></strong> welcome to Mi assets,
           </p>
         </div>
       </ul>
@@ -385,7 +385,7 @@
   <li class="nav-item dropdown no-arrow">
     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown"
       aria-haspopup="true" aria-expanded="false">
-      <span class="mr-2 d-none d-lg-inline text-gray-600 small">Mr. Admin</span>
+      <span class="mr-2 d-none d-lg-inline text-gray-600 small">Mr. user</span>
       <img class="img-profile rounded-circle" src="/img/profile.jpg" />
     </a>
     <!-- Dropdown - User Information -->
@@ -447,38 +447,38 @@
                   <thead>
                     <tr>
                         <th class="text-center">Asset Name</th>
-                      <th class="text-center">Rent Amount</th>
-                      <th class="text-center">Expenses</th>
-                      <th class="text-center">Total profit</th>
+                      <th class="text-center">Amount</th>
+                      <th class="text-center">Due Date</th>
+                      <th class="text-center">Status</th>
                       <th></th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
                       <th class="text-center">Asset Name</th>
-                      <th class="text-center">Rent Amount</th>
-                      <th class="text-center">Expenses</th>
-                      <th class="text-center">Total profit</th>
+                      <th class="text-center">Amount</th>
+                      <th class="text-center">Due Date</th>
+                      <th class="text-center">Status</th>
                       <th></th>
                     </tr>
                   </tfoot>
                   <tbody> 
 
-                    <% for( let asset of Assets ) { %>
+                    <%## for( let asset of Assets ) { %>
 
                         <tr>
-                            <td class="text-center"><%= asset.name %></td>
-                            <td class="text-center">#<%= asset.current_amount %></td>
-                            <td class="text-center">#<%= !(asset.expense)? '0' : asset.expense %></td>
-                            <td class="text-primary text-center">#<%=asset.current_amount-asset.expense%></td>
+                            <td class="text-center"><%##= asset.name %></td>
+                            <td class="text-center">#<%##= asset.current_amount %></td>
+                            <td class="text-center">#<%##= !(asset.expense)? '0' : asset.expense %></td>
+                            <td class="text-primary text-center">#<%##=asset.current_amount-asset.expense%></td>
                             <td title="Edit expense" class="icon text-center" onclick="
-                            $('#FormEdit').attr('action', '/depreciate/update/<%= asset.id %>');
-                            $('#expense').val('<%=asset.expense %>');
+                            $('#FormEdit').attr('action', '/depreciate/update/<%#= asset.id %>');
+                            $('#expense').val('<%#=asset.expense %>');
                             ">                       
                             <i class="fa fa-pen-to-square" data-bs-toggle="modal" data-bs-target="#editModal"></i>
                         </tr>
                        
-                      <% } %>
+                      <%## } %>
                       <div class="modal fade " id="editModal" tabindex="-1" role="dialog"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">

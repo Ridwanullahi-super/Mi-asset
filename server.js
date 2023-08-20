@@ -1,7 +1,9 @@
 const express = require("express")
 const ejs = require('ejs');
 const server = express()
+const RedisStore = require("connect-redis")
 const session = require('express-session');
+const {createClient} = require("redis")
 const flash = require('simple-flash');
 const { time, pathLoger } = require("./helpers/timeLogger");
 const path = require('path');
@@ -30,15 +32,34 @@ server.use(express.json())
 server.set("view engine", "ejs");
 server.set("views", "pages");
 
-// server.use(obj)
+// redis initialized
+let redisClient =createClient()
+redisClient.connect().catch(console.error)
+// iitialized store
+let redisStore = new RedisStore({
+  client:redisClient,
+  prefix:"myapp"
+})
 // session handler
 server.use(session({
-      secret: "keyboard cat",
-      resave:false,
-      saveUninitialized: true,
-      cookie: { secure: false },
+  store:redisStore,
+  resave:false,
+  saveUninitialized: false,
+  secret: "keyboard cat"
+      // cookie: { secure: false },
     })
 );
+// var sess = {
+//   secret: 'keyboard cat',
+//   cookie: {}
+// }
+
+// if (server.get('env') === 'production') {
+//   server.set('trust proxy', 1) // trust first proxy
+//   sess.cookie.secure = true // serve secure cookies
+// }
+
+// server.use(session(sess))
 // cron.schedule(`* * * * * *`,()=>{
 // console.log("out");
 // })

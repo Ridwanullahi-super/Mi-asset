@@ -18,12 +18,12 @@
   <link href="/css/main-style.css" rel="stylesheet" type="text/css" />
   <!-- Custom fonts for this template-->
   <link
-    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    href="https:/user/fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet" />
   <!-- google font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DynaPuff&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https:/user/fonts.googleapis.com" />
+  <link rel="preconnect" href="https:/user/fonts.gstatic.com" crossorigin />
+  <link href="https:/user/fonts.googleapis.com/css2?family=DynaPuff&display=swap" rel="stylesheet" />
 
   <!-- Custom styles for this template-->
   <link href="/css/sb-admin-2.css" rel="stylesheet" />
@@ -43,7 +43,7 @@
     <!-- Sidebar -->
     <ul class="navbar-nav bg-purple sidebar sidebar-dark accordion" id="accordionSidebar">
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="//index">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/user/index">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-house fa-2x"></i>
         </div>
@@ -57,7 +57,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active side-nav">
-        <a class="nav-link" href="//home">
+        <a class="nav-link" href="/user/home">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -70,7 +70,7 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item side-nav">
-        <a class="nav-link collapsed" href="//add-renter" aria-expanded="true"
+        <a class="nav-link collapsed" href="/user/add-renter" aria-expanded="true"
           aria-controls="collapseTwo">
           <i class="fas fa-fw fa-user"></i>
           <span>Renters</span>
@@ -397,7 +397,7 @@
                             <div class="row">
                               <!-- full name -->
                               <div class="col-lg-3 col-md-4 label ">Full Name:</div>
-                              <div class="col-lg-9 col-md-8" name="admin_id"><%=.name()%></div>
+                              <div class="col-lg-9 col-md-8" name="admin_id"><%=user.name()%></div>
                             </div>
           
                     
@@ -411,26 +411,26 @@
                             <div class="row">
                               <!-- department -->
                               <div class="col-lg-3 col-md-4 label">Phone Number:</div>
-                              <div class="col-lg-9 col-md-8" name="admin_id"><%= admin.phone_number %></div>
+                              <div class="col-lg-9 col-md-8" name="admin_id"><%= user.phone_number %></div>
                             </div>
                               
                             <div class="row">
                               <!-- office address -->
                               <div class="col-lg-3 col-md-4 label">Email</div>
-                              <div class="col-lg-9 col-md-8" name="admin_id"><%= admin.email %></div>
+                              <div class="col-lg-9 col-md-8" name="user_id"><%= user.email %></div>
                             </div>
                      
           
                             <div class="row">
                               <!-- country -->
                               <div class="col-lg-3 col-md-4 label">Country:</div>
-                              <div class="col-lg-9 col-md-8" name="admin_id"><%#=(admin.country)? `${admin.country.slice(0,1).toUpperCase()+admin.country.slice(1).toLowerCase()}` :""  %></div>
+                              <div class="col-lg-9 col-md-8" name="user_id"><%#=(user.country)? `${user.country.slice(0,1).toUpperCase()+user.country.slice(1).toLowerCase()}` :""  %></div>
                             </div>
           
                             <div class="row">
                               <!-- address -->
                               <div class="col-lg-3 col-md-4 label">State</div>
-                              <div class="col-lg-9 col-md-8" name="admin_id"><%#= (admin.state)? ${admin.state.slice(0,1).toUpperCase()+admin.state.slice(1).toLowerCase()}` : ""%></div>
+                              <div class="col-lg-9 col-md-8" name="user_id"><%#= (user.state)? ${user.state.slice(0,1).toUpperCase()+user.state.slice(1).toLowerCase()}` : ""%></div>
                             </div>
           
                            
@@ -443,7 +443,7 @@
           
                             <!-- Profile Edit Form -->
                             <!-- enctype="multipart/form-data" -->
-                            <form method="POST"  action="/profile/update/<%= admin.id %>">
+                            <form method="POST"  action="/profile/update/<%= user.id %>">
                               <div class="row mb-3">
                                 <div class="col-md-6 col-lg-7"></div>
                                 <div class=" text-center">
@@ -459,54 +459,54 @@
                               <div class="row mb-3" >
                                 <label for="surname" class="col-md-4 col-lg-3 col-form-label "><b>Surname </b> </label>
                                 <div class="col-md-8 col-lg-9 ">
-                                  <input name="surname" type="text" class="form-control w-50"  value="<%- (admin.surname) %>" id="firstName">
+                                  <input name="surname" type="text" class="form-control w-50"  value="<%- (user.surname) %>" id="firstName">
                                 </div>
                               </div>
                               <div class="row mb-3" >
                                 <label for="first_name" class="col-md-4 col-lg-3 col-form-label"><b>First Nname</b> </label>
                                 <div class="col-md-8 col-lg-9 ">
-                                  <input name="first_name" type="text" class="form-control w-50" value="<%-admin.first_name %>" id="first_name" >
+                                  <input name="first_name" type="text" class="form-control w-50" value="<%-user.first_name %>" id="first_name" >
                                 </div>
                               </div>
                               <div class="row mb-3" >
                                 <label for="other_name" class="col-md-4 col-lg-3 col-form-label"><b>Other Name</b></label>
                                 <div class="col-md-8  col-lg-9">
-                                  <input name="other_name" type="text" class="form-control w-50" value="<%- admin.other_name %>" id="other_name" >
+                                  <input name="other_name" type="text" class="form-control w-50" value="<%- user.other_name %>" id="other_name" >
                                 </div>
                               </div>
           
                               <div class="row mb-3">
                                 <label for="Phone" class="col-md-4 col-lg-3 col-form-label"><b>Phone</b> </label>
                                 <div class="col-md-8 col-lg-9">
-                                  <input name="phone_number" type="text" class="form-control w-50" value="<%-admin.phone_number %>" id="Phone" >
+                                  <input name="phone_number" type="text" class="form-control w-50" value="<%-user.phone_number %>" id="Phone" >
                                 </div>
                               </div>
           
                               <div class="row mb-3">
                                 <label for="Address" class="col-md-4 col-lg-3 col-form-label"><b>Address</b> </label>
                                 <div class="col-md-8 col-lg-9">
-                                  <input name="address" type="text" class="form-control w-50" value="<%-admin.address %>" id="Address" >
+                                  <input name="address" type="text" class="form-control w-50" value="<%-user.address %>" id="Address" >
                                 </div>
                               </div>
 
                               <div class="row mb-3">
-                                <label for="Address" class="col-md-4 col-lg-3 col-form-label"><b>State/Orign</b> <%= admin.state %></label>
+                                <label for="Address" class="col-md-4 col-lg-3 col-form-label"><b>State/Orign</b> <%= user.state %></label>
                                 <div class="col-md-8 col-lg-9">
-                                  <input name="state" type="state" class="form-control w-50" value="<%-admin.state %>" id="state" >
+                                  <input name="state" type="state" class="form-control w-50" value="<%-user.state %>" id="state" >
                                 </div>
                               </div>
           
                               <div class="row mb-3">
                                  <label for="Country" class="col-md-4 col-lg-3 col-form-label"><b>Country</b></label>
                                 <div class="col-md-8 col-lg-9">
-                                  <input name="country" type="text" class="form-control w-50"  value="<%-admin.country %>"id="Country" >
+                                  <input name="country" type="text" class="form-control w-50"  value="<%-user.country %>"id="Country" >
                                 </div>
                               </div>
           
                               <div class="row mb-3">
                                 <label for="Email" class="col-md-4 col-lg-3 col-form-label"><b>Email</b> </label>
                                 <div class="col-md-8 col-lg-9">
-                                  <input name="email" type="email" class="form-control w-50" value="<%- admin.email %>" id="Email" ></div>
+                                  <input name="email" type="email" class="form-control w-50" value="<%- user.email %>" id="Email" ></div>
                                 </div> 
                                <div class="text-center ">
                              <button type="submit" class="btn btn-primary">Save Changes</button>
