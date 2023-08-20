@@ -1,8 +1,8 @@
 const express = require("express")
 const ejs = require('ejs');
 const server = express()
-const RedisStore = require("connect-redis")
 const session = require('express-session');
+const RedisStore = require("connect-redis").default;
 const {createClient} = require("redis")
 const flash = require('simple-flash');
 const { time, pathLoger } = require("./helpers/timeLogger");
