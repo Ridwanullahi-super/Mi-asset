@@ -44,8 +44,8 @@ async function autoReminder(email, name, asset, deadline) {
                       </tr>
                       <tr>
                           <td style="text-align:center;">
-                            <a href="http://adeal.live" title="logo" target="_blank">
-                              <img width="100" style="border-radius: 50%;" src="https://i.ibb.co/F3b0YF7/logo.png" title="logo" alt="logo">
+                            <a href="http://mi-asset.onrender.com" title="logo" target="_blank">
+                              <img width="100" style="border-radius: 50%;" src="https://i.ibb.co/Bt29ccF/logo.jpg" title="logo" alt="logo">
                             </a>
                           </td>
                       </tr>

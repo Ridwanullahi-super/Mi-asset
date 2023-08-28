@@ -42,8 +42,8 @@ function notifyEmail(email, subject, name, message) {
                       </tr>
                       <tr>
                           <td style="text-align:center;">
-                            <a href="http://adeal.live" title="logo" target="_blank">
-                              <img width="100" style="border-radius: 50%;" src="https://i.ibb.co/F3b0YF7/logo.png" title="logo" alt="logo">
+                            <a href="http://mi-asset.onrender.com" title="logo" target="_blank">
+                              <img width="100" style="border-radius: 50%;" src="https://i.ibb.co/Bt29ccF/logo.jpg" title="logo" alt="logo">
                             </a>
                           </td>
                       </tr>
@@ -88,7 +88,7 @@ function notifyEmail(email, subject, name, message) {
                       </tr>
                       <tr>
                           <td style="text-align:center;">
-                              <p style="font-size:14px; color:rgba(69, 80, 86, 0.7411764705882353); line-height:18px; margin:0 0 0;">&copy; <strong>Adeal</strong></p>
+                              <p style="font-size:14px; color:rgba(69, 80, 86, 0.7411764705882353); line-height:18px; margin:0 0 0;">&copy; <strong>SuperCoded</strong></p>
                           </td>
                       </tr>
                       <tr>

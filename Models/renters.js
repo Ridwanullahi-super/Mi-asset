@@ -5,7 +5,7 @@ class Renters extends model {
 
     static async adminID(id){
         let result = []
-        let sql = `SELECT * FROM renters WHERE admin_id = ? `
+        let sql = `SELECT us.first_name, us.surname, us.other_name, us.email FROM renters rt LEFT JOIN users us ON rt.user_id = us.id WHERE admin_id =? `
         let [rows] = await conn.execute(sql,[id])
          for(const row of rows){
             result.push(new this(row))
@@ -20,7 +20,7 @@ class Renters extends model {
    
   static async fetchRenterAssetID(){
       let result = [];
-      let sql = `SELECT first_name, surname, email, due_time, fs.name  as fs_name from renters rt LEFT JOIN fixed_assets fs ON rt.fixed_asset_id =  fs.id;`
+      let sql = `SELECT us.first_name, us.surname, us.email, due_time, fs.name  as fs_name from renters rt LEFT JOIN fixed_assets fs ON rt.fixed_asset_id =  fs.id LEFT JOIN users us ON rt.user_id = us.id`
       let [rows] = await conn.execute(sql)
       for(const row of rows){
          result.push(new this(row))

@@ -7,8 +7,9 @@ const {Router} = require('express')
 const { getOutstanding } = require('../controller/user/profitController');
 const renterValidator = require('../validators/renterValidator');
 const assetValidator = require('../validators/assetValidator');
-const { getHome, getAsset, RentAsset, rentdetails, DueDate } = require('../controller/user/assetController');
+const { getHome, getAsset, RentAsset, rentdetails, DueDate, checkout, verify, cancel, postRenter } = require('../controller/user/assetController');
 const { changePass, updateProfile, getProfile } = require('../controller/user/profileController');
+// const { verify } = require('crypto');
 const user = Router ();
 // console.log(Router);
 
@@ -29,7 +30,13 @@ user.get("/assets", getAsset)
 // user.get("/asset/delete/:id", deleteAsset)
 
 user.get('/home', getHome )
-user.get("/rent-asset", RentAsset)
+user.get("/payment/:id", RentAsset)
+user.post("/payment/:id", postRenter)
+
+user.get("/checkout/:id", checkout)
+user.get("/transaction/verification/:id", verify)
+user.get("/cancel/transaction/:id", cancel)
+
 user.get("/rent-details", rentdetails)
 user.get("/due-date", DueDate)
     
@@ -38,13 +45,7 @@ user.post('/profile', changePass)
 user.post('/profile/update/:id', updateProfile)
 
 user.get("/outstand", getOutstanding)
-// user.get("/depreciate", getDepreciate)
-// user.post("/depreciate/update/:id", updateDepreciate)
 
-// user.get("/profit", getProfit)
-
-// user.get("/reminder", getRemind)
-// user.post("/reminder", sendEmail)
 
 // export part
 module.exports = user;

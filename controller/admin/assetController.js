@@ -1,6 +1,7 @@
 const { name } = require("ejs");
 const Admin = require("../../Models/admin");
 const Fixed_assets = require("../../Models/fixedAssets");
+
 const addAssets = async(req, res)=>{
     let id = req?.session?.admin?.id;
     let Assets = await Fixed_assets.adminID(id)

@@ -85,10 +85,10 @@
           
         </li>
         <li class="nav-item side-nav">
-          <a class="nav-link collapsed" href="/user/rent-asset"  aria-expanded="true"
+          <a class="nav-link collapsed" href=""  aria-expanded="true"
             aria-controls="collapsePages">
             <i class="fas fa-fw fa-house"></i>
-            <span>Rent Assets</span>
+            <span>CheckOut Assets</span>
           </a>
           
         </li>
@@ -426,72 +426,22 @@
                       </tr>
                     </tfoot>
                     <tbody> 
-                      <tr>
-                       <td>Tailor Machine</td>
-                       <td>Bright</td>
-                       <td>Agede area Lagos</td>
-                       <td>10000</td>
-                       <td>Asimiyu Wasiu</td>
-                       <td>
-                        <a href="">
-                          <i class="fa fa-arrow-right" title="click me to complete rent process"></i>
-                        </a></td>
-                      </tr>
-                      <tr>
-                        <td>Tailor Machine</td>
-                        <td>Bright</td>
-                        <td>Agede area Lagos</td>
-                        <td>10000</td>
-                        <td>Asimiyu Wasiu</td>
-                          <td><a href="">
-                          <i class="fa fa-arrow-right" title="click me to complete rent process"></i>
-                        </a></td>
+              
 
-                      </tr>
-                      <tr>
-                        <td>Tailor Machine</td>
-                        <td>Bright</td>
-                        <td>Agede area Lagos</td>
-                        <td>10000</td>
-                        <td>Asimiyu Wasiu</td>
-                          <td><a href="">
-                          <i class="fa fa-arrow-right" title="click me to complete rent process"></i>
-                        </a></td>
-
-                      </tr>
-                      <tr>
-                        <td>Tailor Machine</td>
-                        <td>Bright</td>
-                        <td>Agede area Lagos</td>
-                        <td>10000</td>
-                        <td>Asimiyu Wasiu</td>
-                          <td><a href="">
-                          <i class="fa fa-arrow-right" title="click me to complete rent process"></i>
-                        </a></td>
-
-                      </tr>
-                      <tr>
-                        <td>Tailor Machine</td>
-                        <td>Bright</td>
-                        <td>Agede area Lagos</td>
-                        <td>10000</td>
-                        <td>Asimiyu Wasiu</td>
-                          <td><a href="">
-                          <i class="fa fa-arrow-right" title="click me to complete rent process"></i>
-                        </a></td>
-
-                      </tr>
-                      <tr>
-                        <td>Tailor Machine</td>
-                        <td>Bright</td>
-                        <td>Agede area Lagos</td>
-                        <td>10000</td>
-                        <td>Asimiyu Wasiu</td>
-                          <td><a href="">
-                          <i class="fa fa-arrow-right" title="click me to complete rent process"></i>
-                        </a></td>
-
-                      </tr>
+                      <% for( let asset of Assets ) { %>
+                        <tr class="collapsed">
+                          <td><%= asset.name %></td>
+                          <td><%= asset.company_name %></td>
+                          <td><%= asset.address%></td>
+                          <td><%= asset.amount%></td>
+                          <td><%= asset.admin.surname.slice(0,1).toUpperCase()+asset.admin.surname.slice(1) + " " + asset.admin.first_name.slice(0,1).toUpperCase()+asset.admin.first_name.slice(1) %></td>
+                          <td>
+                          <a href=""> <a href="/user/payment/<%=asset.id%>">
+                            <i class="fa fa-arrow-right" title="click me to complete rent process"></i></a>
+                          </a></td>
+                        </tr>
+                        <% } %>
+           
 
                      
                      </tbody>

@@ -86,10 +86,10 @@
           
         </li>
         <li class="nav-item  side-nav">
-          <a class="nav-link collapsed" href="/user/rent-asset"  aria-expanded="true"
+          <a class="nav-link collapsed" href=""  aria-expanded="true"
             aria-controls="collapsePages">
             <i class="fas fa-fw fa-house"></i>
-            <span>Rent Assets</span>
+            <span>checkOut Assets</span>
           </a>
           
         </li>
@@ -411,13 +411,16 @@
                       </tr>
                     </tfoot>
                     <tbody>
-                     <td>Sewing machine</td>
-                     <td>chiko</td>
-                     <td>lagos</td>
-                     <td>15000</td>
-                     <td>Ade fashion designer</td>
-                     <td>25th july 2023</td>
-                     
+                      <% for( let asset of Assets ) { %>
+                      <tr class="collapsed">
+                        <td><%= asset.name %></td>
+                        <td><%= asset.company_name %></td>
+                        <td><%= asset.address%></td>
+                        <td><%= asset.amount%></td>
+                        <td><%= asset.buyers_name%></td>
+                        <td>25th july 2023</td>
+                      <% } %>
+                      </tr>
                     </tbody>
                   </table>
               

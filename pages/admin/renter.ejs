@@ -412,28 +412,28 @@
                         <td title="Delete renter"><a href="/admin/renter/delete/<%= renter.id %>" class="icon"><i class="fa-solid fa-trash"></i></a>
                         </td>
                         <td>
-                          <%=`${renter.surname.slice(0,1).toUpperCase()+renter.surname.slice(1).toLowerCase()}
-                            ${renter.first_name.slice(0,1).toUpperCase()+renter.first_name.slice(1).toLowerCase()}
-                            ${renter.other_name.slice(0,1).toUpperCase()+renter.other_name.slice(1).toLowerCase()}` %>
+                          <%=`${renter.user.surname? renter.user.surname.slice(0,1).toUpperCase()+renter.user.surname.slice(1).toLowerCase() :""}
+                            ${ renter.user.first_name? renter.user.first_name.slice(0,1).toUpperCase()+renter.user.first_name.slice(1).toLowerCase() :""}
+                            ${renter.user.other_name? renter.user.other_name.slice(0,1).toUpperCase()+renter.user.other_name.slice(1).toLowerCase() :""}` %>
                         </td>
-                        <td><%-renter.phone_number %></td>
+                        <td><%- renter.user.phone_number? renter.user.phone_number :'' %></td>
                         <td><%= new Date(`${renter.rent_time}`).toDateString() %></td>
                         <td><%= new Date(`${renter.due_time}`).toDateString() %></td>
-                        <td><%-renter.address %></td>
+                        <td><%-renter.user.address %></td>
                         <td >
                           <%= renter.asset %>
                         </td>
                         <td title="Edit renter" class="icon"
                          onclick="
                           $('#FormEdit').attr('action', '/admin/renter/update/<%=renter.id  %>');
-                          $('#email').val('<%=renter.email%>');
-                          $('#phone_number').val('<%=renter.phone_number%>');
+                          $('#email').val('<%=renter.user.email%>');
+                          $('#phone_number').val('<%=renter.user.phone_number%>');
                           $('#rent_time').val('<%-renter.rent_time %>');
                           $('#due_time').val('<%-renter.due_time %>');
-                          $('#address').val('<%-renter.address %>');
-                          $('#surname').val('<%=`${renter.surname.slice(0,1).toUpperCase()+renter.surname.slice(1).toLowerCase()}`%>');
-                          $('#first_name').val('<%=`${renter.first_name.slice(0,1).toUpperCase()+renter.first_name.slice(1).toLowerCase()}`%>');
-                          $('#other_name').val('<%=`${renter.other_name.slice(0,1).toUpperCase()+renter.other_name.slice(1).toLowerCase()}`%>');
+                          $('#address').val('<%-renter.user.address %>');
+                          $('#surname').val('<%=`${renter.user.surname.slice(0,1).toUpperCase()+renter.user.surname.slice(1).toLowerCase()}`%>');
+                          $('#first_name').val('<%=`${renter.user.first_name.slice(0,1).toUpperCase()+renter.user.first_name.slice(1).toLowerCase()}`%>');
+                          $('#other_name').val('<%=`${renter.user.other_name? renter.user.other_name.slice(0,1).toUpperCase()+renter.user.other_name.slice(1).toLowerCase() :``}` %>');
                           
                          " >
                           <i class="fa fa-pen-to-square" data-bs-toggle="modal" data-bs-target="#editModal"></i>

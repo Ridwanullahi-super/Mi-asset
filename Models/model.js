@@ -33,7 +33,7 @@ class Model {
       )}) VALUES (${"?".repeat(columns.length).split("").join(", ")})`;
       let [result] = await conn.execute(sql, values);
       this.id = result.insertId;
-      return result.affectedRows > 0;
+      return result.insertId;
     } catch (error) {
       console.log(error);
     }
@@ -63,6 +63,7 @@ class Model {
     if (results.length > 0) {
       let result = results[0];
       return new this(result);
+
     }
     return null;
   }

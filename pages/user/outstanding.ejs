@@ -472,13 +472,10 @@
                             <td class="text-center">#<%##= !(asset.expense)? '0' : asset.expense %></td>
                             <td class="text-primary text-center">#<%##=asset.current_amount-asset.expense%></td>
                             <td title="Edit expense" class="icon text-center" onclick="
-                            $('#FormEdit').attr('action', '/depreciate/update/<%#= asset.id %>');
-                            $('#expense').val('<%#=asset.expense %>');
-                            ">                       
-                            <i class="fa fa-pen-to-square" data-bs-toggle="modal" data-bs-target="#editModal"></i>
+                            
                         </tr>
                        
-                      <%## } %>
+                      <%# } %>
                       <div class="modal fade " id="editModal" tabindex="-1" role="dialog"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">

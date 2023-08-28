@@ -33,36 +33,23 @@ server.set("view engine", "ejs");
 server.set("views", "pages");
 
 // redis initialized
-let redisClient =createClient()
-redisClient.connect().catch(console.error)
+// let redisClient =createClient()
+// redisClient.connect().catch(console.error)
 // iitialized store
-let redisStore = new RedisStore({
-  client:redisClient,
-  prefix:"myapp"
-})
+// let redisStore = new RedisStore({
+//   client:redisClient,
+//   prefix:"myapp"
+// })
 // session handler
 server.use(session({
-  store:redisStore,
+  // store:redisStore,
   resave:false,
   saveUninitialized: false,
   secret: "keyboard cat"
       // cookie: { secure: false },
     })
 );
-// var sess = {
-//   secret: 'keyboard cat',
-//   cookie: {}
-// }
 
-// if (server.get('env') === 'production') {
-//   server.set('trust proxy', 1) // trust first proxy
-//   sess.cookie.secure = true // serve secure cookies
-// }
-
-// server.use(session(sess))
-// cron.schedule(`* * * * * *`,()=>{
-// console.log("out");
-// })
 // flash engine
 server.use(flash({ locals: "flash" }));
 // validator engine
@@ -146,7 +133,7 @@ server.listen(port, (err)=>{
       
     var scheduleDate = new Date(due_date)
       scheduleDate.setDate(scheduleDate.getDate()-1)
-      // console.log(due_date, scheduleDate.getMonth()+1);
+      // console.log(due_date, scheduleDate.getMinutes());
 
       cron.schedule(`${scheduleDate.getMinutes()} ${scheduleDate.getHours()} ${scheduleDate.getDate()} ${scheduleDate.getMonth()+1} ${scheduleDate.getDay()}`,()=>{
        autoReminder(email, fullname, asset_name,due_date)
