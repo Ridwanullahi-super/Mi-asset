@@ -13,19 +13,15 @@ const addRenters = (async (req, res) => {
 
 const sendRenter = async (req, res) => {
     try {
-        // const admin = req?.session?.admin?.id
-        // const renter = new Renters(req.body)
-
-        // renter.admin_id = admin
-        // const user  =
-        // await renter.save();
+    
         let { due_time, rent_time, fixed_asset_id, ...otherFieldsUser } = req.body;
         const user = new User(otherFieldsUser);
         let { first_name, surname, address, other_name, email, phone_number, ...otherFieldsRenter } = req.body;
         const renter = new Renters(otherFieldsRenter);
         const saveUser = await user.save();
+        req.flash("success", "one renter a to add renter")
         // funtion to send email to user
-        AddRenterNotification(req.body.email, req.body.surname + " " + req.body.first_name, req.body.fixed_asset_id)  //not working
+        AddRenterNotification(req.body.email, req.body.surname + " " + req.body.first_name, req.body.fixed_asset_id)()  //not working
         renter.user_id = saveUser;
         renter.admin_id = req?.session?.admin?.id;
         const start = new Date(req.body.rent_time);
@@ -51,13 +47,14 @@ const sendRenter = async (req, res) => {
 
 const getRenters = (async (req, res) => {
     let id = req?.session?.admin?.id
-    let renters = await Renters.adminID(id)
-    // let  Assets= await Fixed_assets.assetId(id)
+    let renters = await Renters.fetchRenterByAdminID(id)
+    let assets = await Fixed_assets.assetId(id)
     for (let renter of renters) {
+        // return console.log(renter);
         renter.asset = await Fixed_assets.findId(renter.fixed_asset_id)
+        // console.log(renter.asset);
         renter.user = await User.findId(renter.user_id)
     }
-    let assets = await Fixed_assets.assetId(id)
     res.render("admin/renter", { renters, assets })
 });
 
@@ -92,7 +89,7 @@ const updateRenter = async (req, res) => {
         req.flash("success", "Renter updated successfully")
         res.redirect("back")
     } catch (error) {
-        req.flash("danger", "unable to update renter")
+        req.flash("error", "unable to update renter")
         console.log(error.status);
         res.redirect("back")
     }

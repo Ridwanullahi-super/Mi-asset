@@ -1,6 +1,7 @@
 const Fixed_assets = require("../../Models/fixedAssets")
 const Renters = require("../../Models/renters")
 
+
 // const addRenters = (async(req, res)=>{
 //     let id = req?.session?.user?.id
 //     let  Assets= await Fixed_assets.assetId(id)
@@ -73,4 +74,13 @@ const Renters = require("../../Models/renters")
 //         res.redirect("back")
 //     }
 // }
-module.exports = {addRenters, getRenters, saveRenter,sendRenter,deleteRenter,updateRenter}
+const  getOutstanding = async(req, res)=>{
+    let user_id = req?.session?.user?.id
+    let outstandings = await Renters.fetchOutRenter(user_id)
+    for(let outstanding of outstandings){
+      outstanding.asset = await Fixed_assets.findId(outstanding.fixed_asset_id)
+    }
+    let RentOutstanding = await Renters.findOutRenter(user_id)
+    res.render("user/outstanding" ,{outstandings, RentOutstanding})
+}
+module.exports = {getOutstanding}

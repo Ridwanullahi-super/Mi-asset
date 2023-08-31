@@ -502,7 +502,7 @@
                               </div>
 
                               <div class="row mb-3">
-                                <label for="Address" class="col-md-4 col-lg-3 col-form-label"><b>State/Orign</b> <%= admin.state %></label>
+                                <label for="Address" class="col-md-4 col-lg-3 col-form-label"><b>State/Orign</b> </label>
                                 <div class="col-md-8 col-lg-9">
                                   <input name="state" type="state" class="form-control w-50" value="<%-admin.state %>" id="state" >
                                 </div>
@@ -519,6 +519,11 @@
                                 <label for="Email" class="col-md-4 col-lg-3 col-form-label"><b>Email</b> </label>
                                 <div class="col-md-8 col-lg-9">
                                   <input name="email" type="email" class="form-control w-50" value="<%- admin.email %>" id="Email" ></div>
+                                </div> 
+                              <div class="row mb-3">
+                                <label for="Email" class="col-md-4 col-lg-3 col-form-label"><b>Paystack Secret key</b> </label>
+                                <div class="col-md-8 col-lg-9">
+                                  <input name="email" type="email" class="form-control w-50" value="<%- admin.paystack_secret_key? admin.paystack_secret_key : '' %>" id="Email" ></div>
                                 </div> 
                                <div class="text-center ">
                              <button type="submit" class="btn btn-primary">Save Changes</button>

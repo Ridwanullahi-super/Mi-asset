@@ -457,6 +457,7 @@
                   <thead>
                     <tr>
                         <th class="text-center">Asset Name</th>
+                        <th class="text-center">Purchase</th>
                       <th class="text-center">Rent Amount</th>
                       <th class="text-center">Expenses</th>
                       <th class="text-center">Total profit</th>
@@ -466,6 +467,7 @@
                   <tfoot>
                     <tr>
                       <th class="text-center">Asset Name</th>
+                      <th class="text-center">Purchase</th>
                       <th class="text-center">Rent Amount</th>
                       <th class="text-center">Expenses</th>
                       <th class="text-center">Total profit</th>
@@ -479,8 +481,9 @@
                         <tr>
                             <td class="text-center"><%= asset.name %></td>
                             <td class="text-center">#<%= asset.current_amount %></td>
+                            <td class="text-center">#<%= asset.amount %></td>
                             <td class="text-center">#<%= !(asset.expense)? '0' : asset.expense %></td>
-                            <td class="text-primary text-center">#<%=asset.current_amount-asset.expense%></td>
+                            <td class="text-primary text-center">#<%= asset.amount-asset.current_amount-asset.expense %></td>
                             <td title="Edit expense" class="icon text-center" onclick="
                             $('#FormEdit').attr('action', '/admin/depreciate/update/<%= asset.id %>');
                             $('#expense').val('<%=asset.expense %>');

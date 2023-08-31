@@ -866,9 +866,9 @@ section {
 }
 
 .features .nav-link.active {
-  background: #ff4a17;
+  background: rgb(132, 11, 132);
   color: #fff;
-  border-color: #ff4a17;
+  border-color: rgb(132, 11, 132);
 }
 
 @media (max-width: 768px) {
@@ -1071,7 +1071,7 @@ section {
 }
 
 .testimonials .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: #ff4a17;
+  background-color: (rgb(132, 11, 132), 0.9);
   opacity: 1;
 }
 

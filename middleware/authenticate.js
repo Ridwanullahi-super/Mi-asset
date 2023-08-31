@@ -2,8 +2,8 @@ const authenticateUser = (req, res, next)=>{
     if(req.session.user){
        return next()
     }else{
-        req.session.intent = req.path
-        req.flash("Info", "email or password is wronged")
+        req.session.intent ="/user" + req.path
+        req.flash("Info", "login is reqired")
         res.redirect('/')
         // console.log('error');        
         

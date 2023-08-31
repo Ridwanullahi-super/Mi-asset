@@ -386,60 +386,72 @@
                     <tr>
                       <th></th>
                       <th>Name</th>
-                      <th>Phone number</th>
+                      <th>Amount</th>
                       <th>Rent time</th>
                       <th>Due time</th>
                       <th>Address</th>
                       <th>Assets name</th>
-                      <th></th>
+                      <th>Payment Status</th>
+                 
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
                       <th></th>
                       <th>Name</th>
-                      <th>Phone number</th>
+                      <th>Amount</th>
                       <th>Rent time</th>
                       <th>Due time</th>
                       <th>Address</th>
                       <th>Assets name</th>
-                      <th></th>
+                      <th>Payment Status</th>
+              
                     </tr>
                   </tfoot>
                   <tbody>
                     <% for( let renter of renters) { %>
                       <tr name="<%- renter.user_id %>">
-                        <td title="Delete renter"><a href="/admin/renter/delete/<%= renter.id %>" class="icon"><i class="fa-solid fa-trash"></i></a>
+                        <td title="Delete renter"><a  class="icon" data-bs-toggle="modal" data-bs-target="#DeleteRenter"><i class="fa-solid fa-trash"></i></a>
                         </td>
                         <td>
                           <%=`${renter.user.surname? renter.user.surname.slice(0,1).toUpperCase()+renter.user.surname.slice(1).toLowerCase() :""}
                             ${ renter.user.first_name? renter.user.first_name.slice(0,1).toUpperCase()+renter.user.first_name.slice(1).toLowerCase() :""}
                             ${renter.user.other_name? renter.user.other_name.slice(0,1).toUpperCase()+renter.user.other_name.slice(1).toLowerCase() :""}` %>
                         </td>
-                        <td><%- renter.user.phone_number? renter.user.phone_number :'' %></td>
+                        <td><%- renter.amount? renter.amount :'' %></td>
                         <td><%= new Date(`${renter.rent_time}`).toDateString() %></td>
                         <td><%= new Date(`${renter.due_time}`).toDateString() %></td>
                         <td><%-renter.user.address %></td>
-                        <td >
-                          <%= renter.asset %>
-                        </td>
-                        <td title="Edit renter" class="icon"
-                         onclick="
-                          $('#FormEdit').attr('action', '/admin/renter/update/<%=renter.id  %>');
-                          $('#email').val('<%=renter.user.email%>');
-                          $('#phone_number').val('<%=renter.user.phone_number%>');
-                          $('#rent_time').val('<%-renter.rent_time %>');
-                          $('#due_time').val('<%-renter.due_time %>');
-                          $('#address').val('<%-renter.user.address %>');
-                          $('#surname').val('<%=`${renter.user.surname.slice(0,1).toUpperCase()+renter.user.surname.slice(1).toLowerCase()}`%>');
-                          $('#first_name').val('<%=`${renter.user.first_name.slice(0,1).toUpperCase()+renter.user.first_name.slice(1).toLowerCase()}`%>');
-                          $('#other_name').val('<%=`${renter.user.other_name? renter.user.other_name.slice(0,1).toUpperCase()+renter.user.other_name.slice(1).toLowerCase() :``}` %>');
-                          
-                         " >
-                          <i class="fa fa-pen-to-square" data-bs-toggle="modal" data-bs-target="#editModal"></i>
-                        </td>
+                        <td><%-renter.asset.name %></td>
+                        <td><%-renter.payment_status? "paid":"Outstanding"%></td>
+                        
 
+                        <div class="modal fade" id="DeleteRenter" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Delete Renter</h5>
+                              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              are you sure you want to delete <%= renter.user.surname.toUpperCase()+ " " + renter.user.first_name.toUpperCase() %>
+                            </div>
+                            <div class="modal-footer">
+                              <a class="btn btn-primary" href="/admin/renter/delete/<%= renter.id %>" type="button" >
+                             Yes
+                            </a>
+                              <a class="btn btn-secondary" data-dismiss="modal">No</a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                         <% } %>
+
+
+
                       </tr>
 
                       <div class="modal fade " id="editModal" tabindex="-1" role="dialog"

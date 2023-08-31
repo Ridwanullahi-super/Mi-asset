@@ -498,13 +498,13 @@
                       <% for( let asset of depreciate ) { %>
                        <tr>
                           <td class="text-center"><%= asset.name %></td>
-                          <td class="text-center">#<%= asset.amount%></td>
+                          <td class="text-center">#<%= asset.current_amount%></td>
                           <td class="text-center"> <%= (asset.expense =='undefined')? '0' : asset.expense %> </td>
-                          <td class="text-center">#<% let totalAmount = (asset.amount+asset.expense)%>
-                          <%= totalAmount %>
+                          <td class="text-center">#<%-  Number(asset.current_amount)+ Number(asset.expense) %>
+                         
                           </td>
                           <td class="text-center">#<% function Depreciation(){
-                            let salvageValue= ((asset.savage_value =="undefined")? "0" : `${asset.amount*0.1}`   ) 
+                            let salvageValue= ((asset.savage_value =="undefined")? "0" : `${asset.current_amount*0.1}`   ) 
                             let y = salvageValue/asset.lifespan
                             let month = (y/12)
                             let halfMonths = (month*6)

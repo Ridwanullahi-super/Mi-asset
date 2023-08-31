@@ -14,7 +14,7 @@ const User = require("../../Models/user")
       // let pass = await bcrypt.compare(otherp,has)
       // console.log(pass);
       if(user){
-         req.session.user = user;
+         req.session.user = user; // it is here that we create the session for the user
          console.log(req.path);
          req.flash("success","welcome " + user.name())
          res.redirect(req?.session?.intent || '/user/home');
@@ -29,6 +29,7 @@ const User = require("../../Models/user")
 //  end post login
 
  const creatAccountUser = (req, res)=>{
+   
     res.render('user/create_account')
  } 
  const newUser = async (req, res)=>{

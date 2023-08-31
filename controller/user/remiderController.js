@@ -11,8 +11,10 @@ const getRemind = (async(req, res)=>{
     let id = req?.session?.user?.id
     let  renters= await Renters.adminID(id)
     // let  Assets= await Fixed_assets.assetId(id)
-    
-    res.render("user/reminders",{renters})
+    let user_id =req?.session?.user?.id
+    let RentOutstanding = await Renters.findOutRenter(user_id)
+
+    res.render("user/reminders",{renters,RentOutstanding})
 })
 const sendEmail = (req, res)=>{
     let {fullname, email, title, message} = req.body;

@@ -395,8 +395,12 @@
 
                                 <select class="form-select form-select-lg" name="email" id="">
                               <% for( let renter of renters ) { %>
+                                <% let arr = [] %>
+                                <% let em =renter.email
+                                // let k = eamil.push()
+                                %>
+                                <%  console.log(renter.email) %>
                                   <option value="<%= renter.email %>" ><%=renter.email %></option>
-                                  
                                   <% } %>
                                 </select>
 

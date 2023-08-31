@@ -2,8 +2,7 @@ const express = require("express")
 const ejs = require('ejs');
 const server = express()
 const session = require('express-session');
-const RedisStore = require("connect-redis").default;
-const {createClient} = require("redis")
+const MemoryStore = require('memorystore')(session);
 const flash = require('simple-flash');
 const { time, pathLoger } = require("./helpers/timeLogger");
 const path = require('path');
@@ -16,9 +15,10 @@ const Fixed_assets = require("./Models/fixedAssets");
 const autoReminder = require("./mail/autoReminder");
 const authenticateUser = require("./middleware/authenticate");
 const authenticateAdmin = require("./middleware/authenticateAdmin");
-const schedule = require("node-schedule");
+// const schedule = require("node-schedule");
 const notifyEmail = require("./mail/notifyMessageToRenter");
 const cron = require("node-cron");
+const bodyParser = require('body-parser');
 // const obj = require("../specs/server.specs.js")
 
 const port = process.env.PORT || 4200 ;
@@ -26,30 +26,23 @@ const port = process.env.PORT || 4200 ;
 server.use(express.static(path.join(__dirname, "public")));
 server.use(express.static(path.join(__dirname,'uploads')));
 server.use(express.urlencoded({ extended: true }));
-server.use(express.json())
+server.use(bodyParser.urlencoded({extended: true }));
+// server.use(express.json()) //commented!
 
 //extended javascript link
 server.set("view engine", "ejs");
 server.set("views", "pages");
 
-// redis initialized
-// let redisClient =createClient()
-// redisClient.connect().catch(console.error)
-// iitialized store
-// let redisStore = new RedisStore({
-//   client:redisClient,
-//   prefix:"myapp"
-// })
-// session handler
-server.use(session({
-  // store:redisStore,
-  resave:false,
-  saveUninitialized: false,
-  secret: "keyboard cat"
-      // cookie: { secure: false },
-    })
-);
 
+// session handler here is the session
+server.use(session({
+  cookie: { maxAge: 604800000 },
+  store: new MemoryStore({
+    checkPeriod: 604800000 // prune expired entries every 7days
+  }),
+  resave: false,
+  secret: 'keyboard cat'
+}))
 // flash engine
 server.use(flash({ locals: "flash" }));
 // validator engine
@@ -71,34 +64,7 @@ server.use ("/admin", authenticateAdmin, adminRoutes)
 
 // automatic mail send
 
-// async function BeforeToday(due_time,vrentime) {
-//   var renters= await Renters.fetchTime()
-//   const renter= renters.map(q=>q.due_time)  
-//   let dueTime = new Date(renter.due_time).getTime()-(1000*60*60)
-//   let rentDay = new Date(renter.rent_time)
-//   let date = (new Date(Number(new Date(renter.due_time)))).getTime()
-//   // console.log(date);
-//    var newDate = date-86400000
-//   let dayOFweek = new Date(newDate).getDay()
-//   let month = new Date(newDate).getMonth() + 1;
-//   let dayOfMonth = new Date(newDate).getDate()
-//   let hour = new Date(newDate).getHours()
-//   let minute = new Date(newDate).getMinutes()
-//   let seconds = new Date(newDate).getSeconds()
-//   let year = new Date(newDate).getFullYear()
-//   let ExpectedDay = (rentDay.getTime()-dueTime.getTime())
-//   return ExpectedDay;
-// }
 
-
-
-
-
-
-
-
-
-// server.use(express.json());
 
 
 // helpers
@@ -135,7 +101,7 @@ server.listen(port, (err)=>{
       scheduleDate.setDate(scheduleDate.getDate()-1)
       // console.log(due_date, scheduleDate.getMinutes());
 
-      cron.schedule(`${scheduleDate.getMinutes()} ${scheduleDate.getHours()} ${scheduleDate.getDate()} ${scheduleDate.getMonth()+1} ${scheduleDate.getDay()}`,()=>{
+      cron.schedule(`${scheduleDate.getMinutes()} ${scheduleDate.getHours()} ${scheduleDate.getDate()} ${scheduleDate.getMonth()+1} ${scheduleDate.getDay()}`,()=>{m 
        autoReminder(email, fullname, asset_name,due_date)
       })
     }

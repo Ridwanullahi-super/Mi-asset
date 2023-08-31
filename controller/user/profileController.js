@@ -3,7 +3,9 @@ const User = require("../../Models/user")
 const getProfile =  (async(req, res)=>{
     let id = req?.session?.user?.id
     let user = await User.findId(id)
-    res.render('user/profile.ejs',{user})
+    let user_id =req?.session?.user?.id
+    let RentOutstanding = await Renters.findOutRenter(user_id)
+    res.render('user/profile.ejs',{user,RentOutstanding})
 
 })
 

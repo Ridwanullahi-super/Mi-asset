@@ -4,11 +4,11 @@ const {Router} = require('express')
 // const { getDepreciate, updateDepreciate } = require('../controller/depreciationController');
 // const { getProfit } = require('../controller/profitController');
 // const { getRemind, sendEmail } = require('../controller/remiderController');
-const { getOutstanding } = require('../controller/user/profitController');
 const renterValidator = require('../validators/renterValidator');
 const assetValidator = require('../validators/assetValidator');
 const { getHome, getAsset, RentAsset, rentdetails, DueDate, checkout, verify, cancel, postRenter } = require('../controller/user/assetController');
 const { changePass, updateProfile, getProfile } = require('../controller/user/profileController');
+const {getOutstanding} = require("../controller/user/renterController")
 // const { verify } = require('crypto');
 const user = Router ();
 // console.log(Router);
