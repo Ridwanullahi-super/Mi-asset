@@ -210,7 +210,7 @@
             alt="..."
           />
           <p class="text-center mb-2">
-            <strong title="my profile"> <a href="/profile">Mr.Admin</a></strong> welcome to Mi assets,
+            <strong title="my profile"> <a href="/profile"><%- include("../patials/adminName")  %></a></strong> welcome to Mi assets,
           </p>
         </div>
       </ul>
@@ -395,7 +395,7 @@
   <li class="nav-item dropdown no-arrow">
     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown"
       aria-haspopup="true" aria-expanded="false">
-      <span class="mr-2 d-none d-lg-inline text-gray-600 small">Mr. Admin</span>
+      <span class="mr-2 d-none d-lg-inline text-gray-600 small"><%- include("../patials/adminName")  %></span>
       <img class="img-profile rounded-circle" src="/img/profile.jpg" />
     </a>
     <!-- Dropdown - User Information -->

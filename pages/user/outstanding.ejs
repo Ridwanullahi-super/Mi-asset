@@ -81,8 +81,8 @@
         </a>
 
       </li>
-      <li class="nav-item active side-nav">
-        <a class="nav-link collapsed" href="" aria-expanded="true" aria-controls="collapsePages">
+      <li class="nav-item  side-nav">
+        <a class="nav-link" href="" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-house"></i>
           <span>CheckOut Assets</span>
         </a>
@@ -104,18 +104,14 @@
       </li>
 
       <!-- Nav Item - Tables -->
-      <li class="nav-item side-nav">
-        <a class="nav-link" href="/user/due-date">
-          <i class="fas fa-fw fa-clock"></i>
-          <span>Due Time</span></a>
-      </li>
-      <li class="nav-item side-nav">
+   
+      <li class="nav-item active side-nav">
         <a class="nav-link collapsed" href="/user/outstand">
           <i class="fas fa-fw fa-desktop"></i>
           <span>Outstanding</span></a>
       </li>
       <li class="nav-item side-nav">
-        <a class="nav-link" href="/user/profit">
+        <a class="nav-link" href="/user/complaint">
           <i class="fas fa-fw fa-mail-bulk"></i>
           <span>Complaint</span></a>
       </li>
@@ -137,7 +133,7 @@
       <div class="sidebar-card d-none d-lg-flex">
         <img class="sidebar-card-illustration mb-2" src="/img/profile.jpg" alt="..." />
         <p class="text-center mb-2">
-          <strong title="my profile"> <a href="/user/profile">Mr.user</a></strong> welcome to Mi assets,
+          <strong title="my profile"> <a href="/user/profile"><%- include("../patials/userName") %></a></strong> welcome to Mi assets,
         </p>
       </div>
     </ul>
@@ -169,7 +165,7 @@
           <!-- Begin Page Content -->
           <div class="container-fluid">
             <p class="mb-4">
-              The profit of the assets is as follow in the table
+              The expired rents and dued date with their appropriate amount is as follows.
             </p> <br>
             <!-- Page Heading -->
             <!-- <a class="btn btn-primary my-2" href=""  data-bs-toggle="modal" data-bs-target="#myModal"
@@ -186,7 +182,7 @@
             <div class="card shadow mb-4">
               <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">
-                  Depreciation value
+                  Outstanding Rents and Dued Dates
                 </h6>
               </div>
               <div class="card-body">

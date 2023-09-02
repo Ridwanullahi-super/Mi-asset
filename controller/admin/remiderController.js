@@ -4,6 +4,7 @@ const autoReminder = require("../../mail/autoReminder")
 // const replyEmail = require("../mail/replyMessageEmail")
 const schedule = require("node-schedule")
 const notifyEmail = require("../../mail/notifyMessageToRenter")
+const Admin = require("../../Models/admin")
 Fixed_assets
 
 
@@ -11,8 +12,9 @@ const getRemind = (async(req, res)=>{
     let id = req?.session?.admin?.id
     let  renters= await Renters.adminID(id)
     // let  Assets= await Fixed_assets.assetId(id)
+    let name = await Admin.getName(id)
     
-    res.render("admin/reminders",{renters})
+    res.render("admin/reminders",{renters,name})
 })
 const sendEmail = (req, res)=>{
     let {fullname, email, title, message} = req.body;

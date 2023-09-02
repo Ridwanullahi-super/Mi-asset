@@ -8,26 +8,15 @@ const renterValidator = require('../validators/renterValidator');
 const assetValidator = require('../validators/assetValidator');
 const { getHome, getAsset, RentAsset, rentdetails, DueDate, checkout, verify, cancel, postRenter } = require('../controller/user/assetController');
 const { changePass, updateProfile, getProfile } = require('../controller/user/profileController');
-const {getOutstanding} = require("../controller/user/renterController")
+const {getOutstanding} = require("../controller/user/renterController");
+const { getComplaint, sendComplaint } = require('../controller/user/remiderController');
 // const { verify } = require('crypto');
 const user = Router ();
-// console.log(Router);
 
-
-
-
-// user.get("/assets", getAssets)
-// user.post("/add-asset", assetValidator, sendAssets)
-
-// user.get("/add-renter", addRenters)
-// user.post("/add-renter", sendRenter)
-// user.get("/renters", getRenters)
-// user.get("/renter/delete/:id", deleteRenter)
-// user.post("/renter/update/:id", updateRenter)
 
 user.get("/assets", getAsset)
-// user.post("/asset/update/:id", updateAsset)
-// user.get("/asset/delete/:id", deleteAsset)
+user.get("/complaint", getComplaint)
+user.post("/complaint", sendComplaint)
 
 user.get('/home', getHome )
 user.get("/payment/:id", RentAsset)

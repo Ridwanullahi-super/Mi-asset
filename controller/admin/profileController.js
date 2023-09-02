@@ -3,7 +3,8 @@ const Admin = require("../../Models/admin")
 const getProfile =  (async(req, res)=>{
     let id = req?.session?.admin?.id
     let admin = await Admin.findId(id)
-    res.render('admin/profile.ejs',{admin})
+    let name = await Admin.getName(id)
+    res.render('admin/profile.ejs',{admin,name})
 
 })
 

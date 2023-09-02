@@ -5,7 +5,8 @@ const getProfile =  (async(req, res)=>{
     let user = await User.findId(id)
     let user_id =req?.session?.user?.id
     let RentOutstanding = await Renters.findOutRenter(user_id)
-    res.render('user/profile.ejs',{user,RentOutstanding})
+    let name = await User.getName(id)
+    res.render('user/profile.ejs',{user,RentOutstanding,name})
 
 })
 

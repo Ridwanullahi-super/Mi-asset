@@ -1,3 +1,4 @@
+const Admin = require("../../Models/admin")
 const Fixed_assets = require("../../Models/fixedAssets")
 const Renters = require("../../Models/renters")
 const User = require("../../Models/user")
@@ -6,8 +7,8 @@ const AddRenterNotification = require("../../mail/AddRenter")
 const addRenters = (async (req, res) => {
     let id = req?.session?.admin?.id
     let Assets = await Fixed_assets.assetId(id)
-
-    res.render("admin/add-renter", { Assets })
+    let name = await Admin.getName(id)
+    res.render("admin/add-renter", { Assets,name })
 }
 )
 
@@ -55,7 +56,8 @@ const getRenters = (async (req, res) => {
         // console.log(renter.asset);
         renter.user = await User.findId(renter.user_id)
     }
-    res.render("admin/renter", { renters, assets })
+    let name = await Admin.getName(id)
+    res.render("admin/renter", { renters, assets,name })
 });
 
 

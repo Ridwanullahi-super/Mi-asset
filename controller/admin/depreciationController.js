@@ -1,10 +1,12 @@
+const Admin = require("../../Models/admin");
 const Fixed_assets = require("../../Models/fixedAssets");
 
 const getDepreciate = (async(req, res)=>{
         let id = req?.session?.admin?.id;
         let depreciate = await Fixed_assets.adminID(id)
     let admin_id = req?.session?.Fixed_assets?.admin_id
-    res.render("admin/depreciation",{depreciate, admin_id})
+    let name = await Admin.getName(id)
+    res.render("admin/depreciation",{depreciate, admin_id,name})
 })
 
 const updateDepreciate = async(req, res)=>{

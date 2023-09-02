@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt")
 const User = require("../../Models/user")
+const Admin = require("../../Models/admin")
 // let has = "$2b$10$CPGHFFC4pSB2C6lprtxKhem9Wl0.4nu3ra2s7I55VBcDzwgXv2FfC"
 // let otherp = "00000"
 
@@ -43,4 +44,5 @@ const User = require("../../Models/user")
       //   res.render("error")
     }
  }
+
  module.exports = {userGetLogin, creatAccountUser, newUser, Userlogin }

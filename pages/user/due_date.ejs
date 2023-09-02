@@ -113,7 +113,7 @@
           <span>Outstanding</span></a>
       </li>
       <li class="nav-item side-nav">
-        <a class="nav-link" href="/user/profit">
+        <a class="nav-link" href="/user/complaint">
           <i class="fas fa-fw fa-mail-bulk"></i>
           <span>Complaint</span></a>
       </li>
@@ -166,7 +166,7 @@
       <div class="sidebar-card d-none d-lg-flex">
         <img class="sidebar-card-illustration mb-2" src="/img/profile.jpg" alt="..." />
         <p class="text-center mb-2">
-          <strong title="my profile"> <a href="/profile">Mr.admin</a></strong> welcome to Mi assets,
+          <strong title="my profile"> <a href="/profile"><%- include("../patials/userName") %></a></strong> welcome to Mi assets,
          
         </p>
       </div>
@@ -228,9 +228,14 @@
                     </tr>
                   </tfoot>
                   <tbody>
-                 <td>Tailor machine</td>
-                 <td>23, july 2023</td>
-                <td title="pay for rent"><a href="" class="fas fa-sign-in" ></a></td>
+                  <% for( let due of dues ) { %>
+                    <tr>
+                    <td><%= due.name %></td>
+                    <td><%= due.due_time.toDateString() %></td>
+                   <td title="pay for rent"><a href="/user/payment/<%=due.id %>" class="" ><i class="fas fa-sign-in"></i></a></td>
+                  </tr>
+                  <% } %>
+
                 </tbody>
           
                 </table>

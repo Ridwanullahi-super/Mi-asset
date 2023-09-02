@@ -121,7 +121,7 @@
             <span>Outstanding</span></a>
         </li>
         <li class="nav-item side-nav">
-          <a class="nav-link" href="/user/profit">
+          <a class="nav-link" href="/user/complaint">
             <i class="fas fa-fw fa-mail-bulk"></i>
             <span>Complaint</span></a>
         </li>
@@ -148,7 +148,7 @@
             alt="..."
           />
           <p class="text-center mb-2">
-            <strong title="my profile"> <a href="/profile">Mr.admin</a></strong> welcome to Mi assets,
+            <strong title="my profile"> <a href="/profile"><%- include("../patials/userName") %></a></strong> welcome to Mi assets,
           </p>
         </div>
       </ul>
@@ -239,7 +239,7 @@
                         <td><%= asset.address%></td>
                         <td><%= asset.amount%></td>
                         <td><%= asset.buyers_name%></td>
-                        <td>25th july 2023</td>
+                        <td><%= asset.due_time %></td>
                       <% } %>
                       </tr>
                     </tbody>

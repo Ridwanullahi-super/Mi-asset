@@ -1,10 +1,10 @@
 const nodemailer = require("nodemailer");
 //send email
-function notifyEmail(email, subject, name, message) {
+function SendResetPassword(email, token, name) {
   var email = email;
   var subject = subject;
   var name = name;
-  var message = message;
+ 
 
   let transporter = nodemailer.createTransport({
     service: "gmail",
@@ -63,7 +63,12 @@ function notifyEmail(email, subject, name, message) {
                                           <span
                                               style="display:inline-block; vertical-align:middle; margin:29px 0 26px; border-bottom:1px solid #cecece; width:100px;"></span>
                                           <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
-                                            ${message}
+                                                We're sending you this email because you requested a password reset for your Mi-Asset account.Resetting your password is easy. Just press the button below and follow the instructions. We'll have you up and running in no time. 
+                                                <button href="https://admin/miasset.com:4200/admin/forget-password/${admin.token}">Reset Password</button>
+                                                or copy and paste the link below into your browser:
+                                                <center>
+                                                https://admin/miasset.com:4200/forget-password/${admin.token}
+                                                </center>
                                           </p>
                                           <p><b>
                                             Thanks for bearing with Us
@@ -110,4 +115,4 @@ function notifyEmail(email, subject, name, message) {
     }
   });
 }
-module.exports = notifyEmail;
+module.exports = SendResetPassword;

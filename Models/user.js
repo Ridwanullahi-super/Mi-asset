@@ -25,7 +25,15 @@ class User extends Model{
         return false;
       }
       
-
+      static async getName(id){
+        let sql = `SELECT surname, first_name from users where id=?`
+        let [rows] = await conn.execute(sql,[id])
+      if(rows.length>0) {
+        let row = rows[0];
+        return new this(row);
+      }
+        return null;
+      }
       // static async changePassword(suppliedPassword) {
       //   const sql = `SELECT password FROM admins WHERE id=? `;
       //   const [result] = await conn.execute(sql, [id]);
@@ -78,6 +86,30 @@ class User extends Model{
         }
         return null;
       }
+      
+    static async userID(id){
+      let result = []
+      let sql = `SELECT ad.first_name, ad.surname, ad.other_name, ad.email, ad.phone_number, ad.address FROM renters rt LEFT JOIN admins ad ON rt.admin_id = ad.id  WHERE user_id =? `
+      let [rows] = await conn.execute(sql,[id])
+       for(const row of rows){
+          result.push(new this(row))
+
+       }
+       return result;
+  }
+  fullName(){
+    let fullname =  (` ${this.surname} ${this.first_name} ${this.other_name}`)
+    return fullname;
+   } 
+   static async findEmail(email) {
+    let sql = `SELECT * FROM users WHERE email = ?`;
+    let [results] = await conn.execute(sql, [email]);
+    if (results.length > 0) {
+      let result = results[0];
+      return new this(result);
+    }
+    return null;
+  }
       
 }
 

@@ -4,10 +4,11 @@ const Fixed_assets = require("../../Models/fixedAssets");
 
 const addAssets = async(req, res)=>{
     let id = req?.session?.admin?.id;
+    let name = await Admin.getName(id)
+    console.log(name.surname)
     let Assets = await Fixed_assets.adminID(id)
     let admin_id = req?.session?.Fixed_assets?.admin_id
-    
-    res.render('admin/add-asset.ejs',{admin_id,Assets});
+    res.render('admin/add-asset.ejs',{admin_id,Assets, name});
 }
 
 const sendAssets = async (req, res)=>{
@@ -29,7 +30,8 @@ const sendAssets = async (req, res)=>{
     let id = req?.session?.admin?.id;
     let Assets = await Fixed_assets.adminID(id)
     let admin_id = req?.session?.Fixed_assets?.admin_id
-        res.render("admin/fixed_assets",{Assets, admin_id})
+    let name = await Admin.getName(id)
+        res.render("admin/fixed_assets",{Assets, admin_id,name})
  })
 
 const deleteAsset = (async(req, res)=>{
@@ -62,9 +64,11 @@ const updateAsset = (async (req, res)=>{
      throw error
     }
 })
-const getHome = ((req, res)=>{
+const getHome = (async(req, res)=>{
     console.log("session",req.session.admin);
-    res.render('admin/index.ejs')
+    let id = req?.session?.admin?.id;
+    let name = await Admin.getName(id)
+    res.render('admin/index.ejs',{name})
 })
 
 

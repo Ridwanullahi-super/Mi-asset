@@ -1,5 +1,6 @@
 const Fixed_assets = require("../../Models/fixedAssets")
 const Renters = require("../../Models/renters")
+const User = require("../../Models/user")
 
 
 // const addRenters = (async(req, res)=>{
@@ -81,6 +82,7 @@ const  getOutstanding = async(req, res)=>{
       outstanding.asset = await Fixed_assets.findId(outstanding.fixed_asset_id)
     }
     let RentOutstanding = await Renters.findOutRenter(user_id)
-    res.render("user/outstanding" ,{outstandings, RentOutstanding})
+    let name = await User.getName(user_id)
+    res.render("user/outstanding" ,{outstandings, RentOutstanding,name})
 }
 module.exports = {getOutstanding}

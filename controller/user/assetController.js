@@ -15,7 +15,9 @@ const getAsset = async (req, res) => {
   }
   let user_id = req?.session?.user?.id
   let RentOutstanding = await Renters.findOutRenter(user_id)
-  res.render("user/available_assets", { Assets, RentOutstanding })
+  let id = req?.session?.user?.id
+  let name = await User.getName(id)
+  res.render("user/available_assets", { Assets, RentOutstanding, name})
 }
 
 const RentAsset = async (req, res) => {
@@ -24,7 +26,9 @@ const RentAsset = async (req, res) => {
   let user_id = req?.session?.user?.id
   let RentOutstanding = await Renters.findOutRenter(user_id)
   Asset.admin = await Admin.findId(Asset.admin_id)
-  res.render("user/payment", { Asset, RentOutstanding })
+  let userId = req?.session?.user?.id
+  let name = await User.getName(userId)
+  res.render("user/payment", { Asset, RentOutstanding,name })
 }
 const postRenter = async (req, res) => {
   let user = req?.session?.user
@@ -40,8 +44,8 @@ const postRenter = async (req, res) => {
   await renter.save()
   let user_id = req?.session?.user?.id
   let RentOutstanding = await Renters.findOutRenter(user_id)
-
-  res.redirect("/user/checkout/" + renter.id)
+  let name = await User.getName(user_id)
+  res.redirect("/user/checkout/" + renter.id, {name})
 }
 // console.log(new Date(Number(new Date()) + (1 * 30 * 24 * 60 * 60 * 1000)).toISOString().slice(0,-5).replace('T', ''));
 
@@ -141,13 +145,22 @@ const rentdetails = async (req, res) => {
 
   let user_id = req?.session?.user?.id
   let RentOutstanding = await Renters.findOutRenter(user_id)
-
-  res.render("user/rent-detail", { Assets, RentOutstanding })
+  let name = await User.getName(user_id)
+  res.render("user/rent-detail", { Assets, RentOutstanding,name })
 }
+
 const DueDate = async (req, res) => {
   let user_id = req?.session?.user?.id
   let RentOutstanding = await Renters.findOutRenter(user_id)
-  res.render("user/due_date", { RentOutstanding })
+  let name = await User.getName(user_id)
+  let dues = await Renters.fetchAssetRent(user_id)
+  // console.log(dues);
+  // for(let due of dues){
+  //   due.asset = await Fixed_assets.findId(due.fixed_asset_id)
+  // }
+
+  
+  res.render("user/due_date", { RentOutstanding,name,dues })
 }
 
 
@@ -155,7 +168,8 @@ const getHome = (async (req, res) => {
   // console.log("session", req.session.user);
   let user_id = req?.session?.user?.id
   let RentOutstanding = await Renters.findOutRenter(user_id)
-  res.render('user/index.ejs', { RentOutstanding })
+  let name = await User.getName(user_id)
+  res.render('user/index.ejs', { RentOutstanding,name })
 })
 
 

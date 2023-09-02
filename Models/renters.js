@@ -49,6 +49,15 @@ let [rows] = await conn.execute(sql,[id]);
 return result
 }
 
+static async fetchAssetRent(id){
+   let result = [];
+   let sql = `SELECT fs.id, fs.name, rt.due_time FROM renters rt LEFT JOIN fixed_assets fs ON rt.fixed_asset_id = fs.id WHERE rt.user_id = ?`;
+   let [rows] = await conn.execute(sql,[id]);
+     for(const row of rows){
+      result.push(new this(row))
+   }
+   return result
+}
 static async findOutRenter(id){
 let sql = `SELECT * FROM renters WHERE due_time < CURDATE() AND user_id = ?`;
 let [results] = await conn.execute(sql, [id]);

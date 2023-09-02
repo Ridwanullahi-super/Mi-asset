@@ -69,15 +69,35 @@ class Admin extends Model{
         }
       }
     
-      static async findToken(token) {
-        let sql = `SELECT * FROM admins WHERE token = ?`;
-        let [results] = await conn.execute(sql, [token]);
+      static async findEmail(email) {
+        let sql = `SELECT * FROM admins WHERE email = ?`;
+        let [results] = await conn.execute(sql, [email]);
         if (results.length > 0) {
           let result = results[0];
           return new this(result);
         }
         return null;
       }
+    
+      static async getName(id){
+        let sql = `SELECT surname, first_name from admins where id=?`
+        let [rows] = await conn.execute(sql,[id])
+      if(rows.length>0) {
+        let row = rows[0];
+        return new this(row);
+      }
+        return null;
+      }
+      static async findToken(token){
+          let sql = `SELECT * from admins where token=?`
+          let [rows] = await conn.execute(sql,[token])
+        if(rows.length>0) {
+          let row = rows[0];
+          return new this(row);
+        }
+          return null;
+        }
+      
 }
 
 

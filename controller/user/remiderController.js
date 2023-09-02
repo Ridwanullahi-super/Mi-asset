@@ -4,6 +4,8 @@ const autoReminder = require("../../mail/autoReminder")
 // const replyEmail = require("../mail/replyMessageEmail")
 const schedule = require("node-schedule")
 const notifyEmail = require("../../mail/notifyMessageToRenter")
+const User = require("../../Models/user")
+const notifyEmailToAdmin = require("../../mail/notifyMessageToAdmin")
 
 
 
@@ -13,7 +15,7 @@ const getRemind = (async(req, res)=>{
     // let  Assets= await Fixed_assets.assetId(id)
     let user_id =req?.session?.user?.id
     let RentOutstanding = await Renters.findOutRenter(user_id)
-
+  let name = await User.getName(user_id)
     res.render("user/reminders",{renters,RentOutstanding})
 })
 const sendEmail = (req, res)=>{
@@ -50,6 +52,22 @@ const automaticReminder = async (req, res)=>{
     // const job = schedule.scheduleJob(sendDate, autoReminder(renter.email, renter.fullname, renter.asset, renter.due_time))   
  
 }
+const getComplaint = async(req, res)=>{
+    let id = req?.session?.user?.id
+    let  landlords= await User.userID(id)
+    // let  Assets= await Fixed_assets.assetId(id)
+    let name = await User.getName(id)
+    let user_id =req?.session?.user?.id
+    let RentOutstanding = await Renters.findOutRenter(user_id)
+    res.render("user/complaint",{landlords, name,RentOutstanding})
+}
+
+const sendComplaint = (req, res)=>{
+    let {fullname, email, title, message} = req.body;
+    notifyEmailToAdmin(email,title,fullname,message)
+    req.flash("success", `Message sent successfully to ${fullname}`)
+    res.redirect("back")
+}
 
 
-module.exports = {getRemind, sendEmail,automaticReminder}
+module.exports = {getRemind, sendEmail,automaticReminder,getComplaint,sendComplaint}

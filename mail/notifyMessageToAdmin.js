@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 //send email
-function notifyEmail(email, subject, name, message) {
+function notifyEmailToAdmin(email, subject, name, message) {
   var email = email;
   var subject = subject;
   var name = name;
@@ -70,7 +70,7 @@ function notifyEmail(email, subject, name, message) {
                                           </b></p>
                                           <p style=" text-align: right;"><b>
                                             SuperCoded
-                               
+                                            SuperCoded
                                             
                                           </b>
                                           </p>
@@ -110,4 +110,4 @@ function notifyEmail(email, subject, name, message) {
     }
   });
 }
-module.exports = notifyEmail;
+module.exports = notifyEmailToAdmin;

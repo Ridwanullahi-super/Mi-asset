@@ -1,7 +1,9 @@
 const bcrypt = require("bcrypt")
 const Admin = require("../../Models/admin")
+const SendResetPassword = require("../../mail/resetLink")
 let has = "$2b$10$CPGHFFC4pSB2C6lprtxKhem9Wl0.4nu3ra2s7I55VBcDzwgXv2FfC"
 let otherp = "00000"
+let salt = 10
 
  const  login = (req, res)=>{
     res.render('admin/login')
@@ -28,8 +30,10 @@ let otherp = "00000"
  } 
 //  end post login
 
- const creatAccount = (req, res)=>{
-    res.render('admin/create_account')
+ const creatAccount = async(req, res)=>{
+   let id = req?.session?.admin?.id;
+    let name = await Admin.getName(id)
+    res.render('admin/create_account',{name})
  } 
  const newadmin = async (req, res)=>{
     try {
@@ -45,4 +49,28 @@ let otherp = "00000"
         res.ridirect("back")
     }
  }
- module.exports = {login, creatAccount, newadmin, getLogin }
+ // get forget password
+ const getpassword = async(req, res)=>{
+   res.render("admin/forget-password")
+ }
+ const SendresetPassword = async(req, res)=>{
+   let admin = await Admin.findEmail(req.body.email)
+   admin.token = Math.random().toString(36).slice(2)
+   await admin.update()
+   SendResetPassword(admin.email, admin.token, admin.name())
+   req.flash("success","reset mail sent to you email")
+   res.ridirect("back")
+ }
+ //end forget password
+ const getConfirmPassword = async(req, res)=>{
+   let admin = await Admin.findToken(req.params.token)
+   res.render("admin/confirm-password", {admin})
+
+ }
+ const updateConfirmPassword = async(req, res)=>{
+  let admin = await Admin.findToken(req.params.token)
+   admin.password = await bcrypt.hash(req.body.password, salt)
+   admin.token = null   
+   admin.update()
+ }
+ module.exports = {login, creatAccount, newadmin, getLogin,getpassword, SendresetPassword,getConfirmPassword,updateConfirmPassword }
