@@ -89,7 +89,7 @@ class Admin extends Model{
         return null;
       }
       static async findToken(token){
-          let sql = `SELECT * from admins where token=?`
+          let sql = `SELECT * From admins WHERE token = ?`
           let [rows] = await conn.execute(sql,[token])
         if(rows.length>0) {
           let row = rows[0];

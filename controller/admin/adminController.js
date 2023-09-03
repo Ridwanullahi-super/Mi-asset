@@ -53,24 +53,50 @@ let salt = 10
  const getpassword = async(req, res)=>{
    res.render("admin/forget-password")
  }
+  
  const SendresetPassword = async(req, res)=>{
    let admin = await Admin.findEmail(req.body.email)
-   admin.token = Math.random().toString(36).slice(2)
-   await admin.update()
-   SendResetPassword(admin.email, admin.token, admin.name())
-   req.flash("success","reset mail sent to you email")
-   res.ridirect("back")
+   try {
+   if (admin) {
+     admin.token = Math.random().toString(36).slice(2)
+     await admin.update()
+     SendResetPassword(admin.email, admin.token, admin.name())
+     req.flash("success","reset mail sent to you email")
+     res.redirect("back")
+    
+    }
+    req.flash("Failed","you have not registered before")
+    res.redirect("back")
+  
+
+  } catch (error) {
+    console.log(error)
+
+  }
+    
+    
  }
+
  //end forget password
  const getConfirmPassword = async(req, res)=>{
-   let admin = await Admin.findToken(req.params.token)
-   res.render("admin/confirm-password", {admin})
+  let token = req?.params?.token
+//  return console.log(token);
+   let admin = await Admin.findToken(token)
+  res.render("admin/confirm-password", {admin})
 
  }
  const updateConfirmPassword = async(req, res)=>{
-  let admin = await Admin.findToken(req.params.token)
-   admin.password = await bcrypt.hash(req.body.password, salt)
-   admin.token = null   
-   admin.update()
+  let admin = await Admin.findToken(req?.params?.token)
+  if(admin){
+    admin.password = req.body.password;
+    admin.token = null   
+  await admin.update()
+    req.flash("sucess", "you have successfully change your password")
+    res.redirect("/admin")
+  }
+  else{ 
+    req.flash("error", "you have not registered before")
+    res.redirect("/admin")
+  }
  }
  module.exports = {login, creatAccount, newadmin, getLogin,getpassword, SendresetPassword,getConfirmPassword,updateConfirmPassword }

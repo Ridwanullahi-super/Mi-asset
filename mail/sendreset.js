@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 //send email
-function SendResetPassword(email, token, name) {
+function SendResetPass(email, token, name) {
   var email = email;
   var token = token;
   var name = name;
@@ -68,10 +68,10 @@ function SendResetPassword(email, token, name) {
                                                 reset for your Mi-Asset account.Resetting your password is easy.
                                                  Just press the button below and follow the instructions. We'll have you up and running in no time. 
                                                <br> 
-                                               <a style="background-color:blue; border:20; color:white" href="http://localhost:4200/admin/reset-password/${token}">Reset Password</a><br>
+                                               <a style="background-color:blue; border:20; color:white" href="http://localhost:4200/user/reset-password/${token}">Reset Password</a><br>
                                                 or copy and paste the link below into your browser:
                                                 <center>
-                                                http://localhost:4200/admin/reset-password/${token}
+                                                http://localhost:4200/user/reset-password/${token}
                                           </center>
                                           </p>
                                           <p><b>
@@ -119,4 +119,4 @@ function SendResetPassword(email, token, name) {
     }
   });
 }
-module.exports = SendResetPassword;
+module.exports = SendResetPass;

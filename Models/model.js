@@ -69,19 +69,27 @@ class Model {
   }
 
   async update() {
-    let sql = `UPDATE ${this.constructor.tableName} SET `;
-    let { id, ...prop } = this;
-    let columns = Object.keys(prop);
-    let values = Object.values(prop);
-    let i = 0;
-    for (const column of columns) {
-      sql += ` ${column} = ?${i < columns.length - 1 ? "," : ""}`;
-      i++;
+    try {
+      
+      if (this.password) {
+        this.password = await bcrypt.hash(this.password, salt);
+      }
+      let sql = `UPDATE ${this.constructor.tableName} SET `;
+      let { id, ...prop } = this;
+      let columns = Object.keys(prop);
+      let values = Object.values(prop);
+      let i = 0;
+      for (const column of columns) {
+        sql += ` ${column} = ?${i < columns.length - 1 ? "," : ""}`;
+        i++;
+      }
+      sql += ` WHERE id = ${this.id}`;
+      let [result] = await conn.execute(sql, values);
+      // console.log(sql, values);
+      return result.affectedRows > 0;
+    } catch (error) {
+      console.log(error)
     }
-    sql += ` WHERE id = ${this.id}`;
-    let [result] = await conn.execute(sql, values);
-    // console.log(sql, values);
-    return result.affectedRows > 0;
   }
 
  async delete() {

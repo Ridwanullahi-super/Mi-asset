@@ -6,7 +6,7 @@ const { getDepreciate, updateDepreciate } = require('../controller/admin/depreci
 const { getProfit } = require('../controller/admin/profitController');
 const { getRemind, sendEmail } = require('../controller/admin/remiderController');
 const assetValidator = require('../validators/assetValidator');
-const { creatAccount, newadmin } = require('../controller/admin/userController');
+const { creatAccount, newadmin } = require('../controller/admin/adminController');
 
 const admin = Router ();
 
