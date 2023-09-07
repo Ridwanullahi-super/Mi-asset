@@ -58,11 +58,11 @@ const SendResetPass = require("../../mail/sendreset")
      await user.update()
      SendResetPass(user.email, user.token, user.name())
      req.flash("success","reset mail sent to you email")
-     res.redirect("back")
+     res.redirect("/user")
     
     }
     req.flash("Failed","you have not registered before")
-    res.redirect("back")
+    res.redirect("/user")
   
 
   } catch (error) {

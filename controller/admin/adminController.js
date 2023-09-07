@@ -61,12 +61,12 @@ let salt = 10
      admin.token = Math.random().toString(36).slice(2)
      await admin.update()
      SendResetPassword(admin.email, admin.token, admin.name())
-     req.flash("success","reset mail sent to you email")
-     res.redirect("back")
+     req.flash("success","reset mail sent to your email")
+     res.redirect("/admin")
     
     }
     req.flash("Failed","you have not registered before")
-    res.redirect("back")
+    res.redirect("/admin")
   
 
   } catch (error) {

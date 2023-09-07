@@ -454,12 +454,13 @@
           
                             <!-- Profile Edit Form -->
                             <!-- enctype="multipart/form-data" -->
-                            <form method="POST"  action="/profile/update/<%= admin.id %>" enctype="multipart/form-data">
+                            <form method="POST"  action="/admin/profile/update/<%= admin.id %>" enctype="multipart/form-data">
                               <div class="row mb-3">
                                 <div class="col-md-6 col-lg-7"></div>
                                 <div class=" text-center" id="photos">
-                                  <div class="fa fa-user-circle fa-10x" name="photos"> 
-                                  </div>
+                                  <input type="file" name="photo" id="photo" accept="">
+                                  
+                                  
                                   
                                 </div>
                                 <br>

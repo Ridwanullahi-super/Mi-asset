@@ -136,12 +136,13 @@ let cancel = async (req, res, next) => {
 }
 
 const rentdetails = async (req, res) => {
-  let id = req?.admin?.id
-  let Assets = await Fixed_assets.fetch()
+  let id = req?.session?.user?.id
+  let Assets = await Fixed_assets.assetDetails(id)
   //  let admin = await Admin?.findId(id)
-  for (let asset of Assets) {
-    asset.renter = await Renters.findId(asset.renter_id)
-  }
+  // for (let asset of Assets) {
+  //   asset.renter = await Renters.findId(asset.renter_id)
+  //   console.log(asset.renter)
+  // }
 
   let user_id = req?.session?.user?.id
   let RentOutstanding = await Renters.findOutRenter(user_id)
@@ -169,7 +170,9 @@ const getHome = (async (req, res) => {
   let user_id = req?.session?.user?.id
   let RentOutstanding = await Renters.findOutRenter(user_id)
   let name = await User.getName(user_id)
-  res.render('user/index.ejs', { RentOutstanding,name })
+  let Assets = await Fixed_assets.assetDetails(user_id)
+  let asset_number = Assets.length
+  res.render('user/index.ejs', { RentOutstanding,name, asset_number })
 })
 
 

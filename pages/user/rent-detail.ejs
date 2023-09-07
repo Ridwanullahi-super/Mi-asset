@@ -239,7 +239,7 @@
                         <td><%= asset.address%></td>
                         <td><%= asset.amount%></td>
                         <td><%= asset.buyers_name%></td>
-                        <td><%= asset.due_time %></td>
+                        <td><%= asset.due_time.toDateString() %></td>
                       <% } %>
                       </tr>
                     </tbody>

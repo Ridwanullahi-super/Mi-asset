@@ -1,3 +1,4 @@
+const Renters = require("../../Models/renters")
 const User = require("../../Models/user")
 
 const getProfile =  (async(req, res)=>{

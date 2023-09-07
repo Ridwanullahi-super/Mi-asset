@@ -1,4 +1,5 @@
 const Admin = require("../../Models/admin")
+const {resolve} = require("path")
 
 const getProfile =  (async(req, res)=>{
     let id = req?.session?.admin?.id
@@ -24,30 +25,31 @@ const updateProfile = (async(req, res)=>{
     // }
          let id = req?.params?.id
         let admin = await Admin.findId(id)
-        console.log(req.file);
-        const  photo = req.files.photos
+        console.log(req.files);
+        const  photo = req.files.photo
         console.log(photo);
         if (photo) {
             if (!photo.mimetype.startsWith('image/')) {
                 req.flash('Error', "only image file is allowed");
                 req.session.formBody = req.body
                 req.session.formErrors = {}
-                return res.redirect('back')
+               
             }
             if (photo.size > 5 * 1024 * 1024) {
                 req.flash('Error', "File is too large. Maximum of 5mb is allowed");
                 req.session.formBody = req.body
                 req.session.formErrors = {}
-                return res.redirect('back')
+               
             }
             admin.setObjProp(req.body); 
             const fileName = `${(Math.random() * 10).toString(36) + Number(new Date())}.${ photo.mimetype.split('/')[1]}`
             console.log(fileName);
             photo.mv(resolve('uploads/admin/' + fileName), (err) => {
                 if (!err) {
-                    admin.photos = '/admin/' + fileName
+                    admin.photo = '/admin/' + fileName
                     console.log(admin);
                     admin.update()
+                    // res.redirect("back")
                 } else {
                     req.flash('Error', "Unable to upload your file");
                     req.session.formBody = req.body

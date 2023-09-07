@@ -219,7 +219,7 @@
                       </div>  
                     </div>
                     <div class="col-auto">
-                      <i class="fab fa-sigma fa-2x text-gray-300"></i>
+                      <i class="fa fa-wallet fa-2x text-gray-300"></i>
                     </div>
                   </div>
                 </div>
@@ -259,7 +259,14 @@
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
                           <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                            $400,000
+                           #<%# if (RentOutstanding) { %>
+                            <!-- var sum = 0 -->
+                           <%# for( let rent of RentOutstanding { %>
+                          <%#= total %>
+                           <%# } %>
+                           <%#= sum %>
+                           <%# } %>
+                           <%#= '0' %>
                           </div>
                         </div>
                         <!-- <div class="col">
@@ -288,7 +295,7 @@
                        number of Asset(Rent) 
                       </div>
                       <div class="h5 mb-0 font-weight-bold text-gray-800">
-                        20
+                     <%= asset_number %>
                       </div>
                     </div>
                     <div class="col-auto">
