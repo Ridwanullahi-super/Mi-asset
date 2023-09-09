@@ -43,6 +43,16 @@ class Fixed_assets extends Model {
          }
          return result;
     }
+    static async assetDetailsAdmin(id){
+        let result = []
+        let sql = `SELECT fs.name, rt.amount, ad.surname, ad.first_name, rt.due_time FROM renters rt LEFT JOIN fixed_assets fs ON rt.fixed_asset_id = fs.id LEFT JOIN admins ad ON  rt.admin_id = ad.id WHERE rt.admin_id = ?`
+        let [rows] = await conn.execute(sql,[id])
+         for(const row of rows){
+            result.push(new this(row))
+  
+         }
+         return result;
+    }
 
 }
 module.exports = Fixed_assets;

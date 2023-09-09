@@ -67,8 +67,16 @@ const updateAsset = (async (req, res)=>{
 const getHome = (async(req, res)=>{
     console.log("session",req.session.admin);
     let id = req?.session?.admin?.id;
+    let graphs = await Fixed_assets.assetDetailsAdmin(id)
+    const asset_names = graphs.map((item)=>item.name)
+    const due_times = graphs.map((item)=>item.due_time)
+    for (let i = 0; i<asset_names.length; i++) {
+        const asset_name = asset_names[i];
+        const due_time = due_times[i];
+console.log(asset_name, due_time)       
+    }
     let name = await Admin.getName(id)
-    res.render('admin/index.ejs',{name})
+    res.render('admin/index.ejs',{name,graphs})
 })
 
 

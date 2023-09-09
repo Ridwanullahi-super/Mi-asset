@@ -97,6 +97,12 @@ class Admin extends Model{
         }
           return null;
         }
+   async latestUpdate(){
+          let sql = `UPDATE admins SET surname= ?, first_name = ?, other_name =?, phone_number = ?, address = ?, email = ?, photo =?, password = ?, paystack_secret_key=?, country = ?,  state = ?, token = ? `
+          let [result] = await conn.execute(sql, [surname, first_name, other_name, phone_number, address, email, photo, password, patstack_secret_key, country, state, token ])
+          return result.affectedRows>0;
+
+        }
       
 }
 
